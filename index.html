@@ -196,6 +196,10 @@ section > h2 {
 .confs .when { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); padding-top: 2px; }
 .confs .org { font-weight: 600; }
 .confs .desc { color: var(--muted); font-size: 0.92rem; margin: 2px 0 0; }
+.photos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.photos a { display: block; line-height: 0; }
+.photos img { height: 160px; width: auto; max-width: 100%; object-fit: cover; border-radius: 8px; border: 1px solid var(--rule); }
+.award { color: var(--accent); font-weight: 600; }
 .timeline { list-style: none; margin: 0; padding: 0; display: grid; }
 .timeline li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 20px; padding: 14px 0; border-top: 1px solid var(--rule); }
 .timeline li:last-child { border-bottom: 1px solid var(--rule); }
@@ -292,6 +296,7 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
       <h2 id="news-h">News</h2>
       <p class="section-note">Recent presentations, acceptances and milestones.</p>
       <ol class="news">
+        <li class="key"><time>Oct 2026</time><span>Our ACG 2026 poster on AI-assisted esophagogastroduodenoscopy for gastric neoplasm detection received an <b>Outstanding Poster Presenter</b> award.</span></li>
         <li class="key"><time>Nov 2026</time><span>Moderated poster on trajectory-informed stroke risk prediction at the SVIN 2026 Annual Meeting, Las Vegas.</span></li>
         <li class="key"><time>Oct 2026</time><span>Work accepted at TCT 2026, San Diego (Oct 31 – Nov 3).</span></li>
         <li class="key"><time>Oct 2026</time><span>Two first-author posters at the Congress of Neurological Surgeons (CNS) 2026 Annual Meeting, Washington, DC.</span></li>
@@ -516,7 +521,7 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
             <span class="venue">American College of Gastroenterology (ACG) 2026 Annual Scientific Meeting. <em>Am J Gastroenterol</em>. 2026;121(10S1):S248. Abstract S1142.</span>
           </li>
           <li class="pub" data-type="abstract">
-            <div class="pub-head"><span class="id">A3</span><span class="badge ok">Published</span></div>
+            <div class="pub-head"><span class="id">A3</span><span class="badge ok">Published</span><span class="badge hl">Outstanding Poster Presenter</span></div>
             <span class="title">Diagnostic precision and operational efficiency of AI-assisted esophagogastroduodenoscopy for gastric neoplasm detection: a systematic review and meta-analysis of randomized controlled trials</span>
             <span class="authors">Mohammed S, Marupuru S, Sikander DM, Chandran MM, <b>Katlariwala SB</b>, Sajid H, Hayat M, Khan S, Jothilingam K, Shah SZA, Tariq MT, Kuraku DR, Chandrashekar C</span>
             <span class="venue">American College of Gastroenterology (ACG) 2026 Annual Scientific Meeting. <em>Am J Gastroenterol</em>. 2026;121(10S1):S755. Abstract S3467.</span>
@@ -549,9 +554,9 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
         <li><span class="when">2026</span><div><div class="org">Congress of Neurological Surgeons (CNS) 2026 Annual Meeting, Washington, DC</div><p class="desc">Journal supplement: <em>Neurosurgery</em></p></div></li>
         <li><span class="when">2026</span><div><div class="org">International Conference on AI in Computational Science and Engineering (IC-AICSE) 2026, Everest Engineering College, Lalitpur, Nepal</div><p class="desc">Oral presentation; full paper accepted for IEEE publication.</p></div></li>
         <li><span class="when">2026</span><div><div class="org">68th American Society of Hematology (ASH) Annual Meeting and Exposition, 2026</div><p class="desc">Journal supplement: <em>Blood</em></p></div></li>
-        <li><span class="when">2026</span><div><div class="org">American College of Gastroenterology (ACG) 2026 Annual Scientific Meeting</div><p class="desc">Journal supplement: <em>The American Journal of Gastroenterology</em></p></div></li>
+        <li><span class="when">2026</span><div><div class="org">American College of Gastroenterology (ACG) 2026 Annual Scientific Meeting</div><p class="desc">Journal supplement: <em>The American Journal of Gastroenterology</em></p><p class="desc"><span class="award">Outstanding Poster Presenter award</span> for the poster on AI-assisted esophagogastroduodenoscopy for gastric neoplasm detection (co-author).</p><div class="photos"><a href="images/acg2026-outstanding-poster.jpg" target="_blank" rel="noopener"><img src="images/acg2026-outstanding-poster.jpg" alt="Outstanding Poster Presenter ribbon in front of the ACG 2026 poster on AI-assisted esophagogastroduodenoscopy" loading="lazy"></a></div></div></li>
         <li><span class="when">2026</span><div><div class="org">Global Conference on Cloud Computing, Virtualization &amp; Metaverse (MetaSphere 2026), IEM Kolkata</div><p class="desc">Three papers presented; Springer proceedings forthcoming.</p></div></li>
-        <li><span class="when">—</span><div><div class="org">American Academy of Developmental Medicine and Dentistry (AADMD) One Voice Conference, Alliance for Oral Health Across Borders</div></div></li>
+        <li><span class="when">—</span><div><div class="org">American Academy of Developmental Medicine and Dentistry (AADMD) One Voice Conference, Alliance for Oral Health Across Borders</div><p class="desc">Poster presented: AI-driven severity grading of dental caries (poster board 43).</p><div class="photos"><a href="images/aadmd-poster.jpg" target="_blank" rel="noopener"><img src="images/aadmd-poster.jpg" alt="AADMD One Voice Conference poster on AI-driven severity grading of dental caries" loading="lazy"></a><a href="images/aadmd-poster-board.jpg" target="_blank" rel="noopener"><img src="images/aadmd-poster-board.jpg" alt="The dental caries poster on board 43 at the AADMD One Voice Conference" loading="lazy"></a></div></div></li>
       </ul>
     </section>
 
@@ -583,6 +588,7 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
       <p class="kicker">Recognition</p>
       <h2 id="rec-h">Selected recognition</h2>
       <ul class="honors">
+        <li>Outstanding Poster Presenter award, American College of Gastroenterology (ACG) 2026 Annual Scientific Meeting, for the poster on AI-assisted esophagogastroduodenoscopy for gastric neoplasm detection (co-author).</li>
         <li>Moderated poster selection, SVIN 2026 Annual Meeting.</li>
         <li>Oral presentation and certificate of presentation, IC-AICSE 2026 (technically supported by IEEE Nepal Section).</li>
         <li>Certificates of presentation for three papers, MetaSphere 2026.</li>
