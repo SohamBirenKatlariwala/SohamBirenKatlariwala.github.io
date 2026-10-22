@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Soham Biren Katlariwala</title>
+<meta name="description" content="Soham Biren Katlariwala: clinical machine learning, cardiology and stroke AI, neuroimaging and EEG, evidence synthesis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky profile rail (left) + reading column (right); a live signal trace is the single signature element. */
+:root {
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --fg: #1b2028;
+  --muted: #5b6573;
+  --faint: #8a93a0;
+  --rule: #e2e5ea;
+  --accent: #b3263e;
+  --accent-soft: #f8e7ea;
+  --link: #1d5a8c;
+  --chip: #eef1f5;
+  --ok: #1f7a55; --ok-soft: #e3f3ec;
+  --wait: #8a5a10; --wait-soft: #faf0de;
+  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --shadow: 0 1px 2px rgba(20, 28, 40, 0.05), 0 6px 24px rgba(20, 28, 40, 0.05);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1217; --panel: #161a21; --fg: #e6e9ee; --muted: #a2abb8; --faint: #6f7987; --rule: #262c35;
+    --accent: #ff6b81; --accent-soft: #3a1c23; --link: #8cc3f0; --chip: #1e242d;
+    --ok: #6fd3a5; --ok-soft: #15302a; --wait: #f2c27a; --wait-soft: #33281a;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px rgba(0,0,0,0.25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1217; --panel: #161a21; --fg: #e6e9ee; --muted: #a2abb8; --faint: #6f7987; --rule: #262c35;
+  --accent: #ff6b81; --accent-soft: #3a1c23; --link: #8cc3f0; --chip: #1e242d;
+  --ok: #6fd3a5; --ok-soft: #15302a; --wait: #f2c27a; --wait-soft: #33281a;
+  --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px rgba(0,0,0,0.25);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.62;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 3px; }
+
+.shell {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding-block: 36px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 56px;
+}
+
+/* ---------- Profile rail ---------- */
+.rail { position: sticky; top: calc(24px + env(safe-area-inset-top, 0px)); align-self: start; display: grid; gap: 22px; }
+.portrait {
+  position: relative;
+  width: 148px; aspect-ratio: 1; max-width: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, var(--panel), var(--accent-soft));
+  border: 1px solid var(--rule);
+  display: grid; place-items: center; overflow: hidden;
+  font-family: var(--font-display); font-size: 3.4rem; color: var(--accent);
+}
+.portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2.6rem;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-wrap: balance;
+}
+.role { margin: 6px 0 0; color: var(--muted); font-size: 0.95rem; }
+.email { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); word-break: break-word; }
+.profiles { display: flex; flex-wrap: wrap; gap: 8px; }
+.profiles a {
+  font-size: 0.82rem; font-weight: 600;
+  padding: 5px 11px; border-radius: 999px;
+  background: var(--chip); color: var(--fg); border: 1px solid var(--rule);
+}
+.profiles a:hover { text-decoration: none; border-color: var(--link); color: var(--link); }
+.toc { display: grid; gap: 2px; border-top: 1px solid var(--rule); padding-top: 14px; }
+.toc a {
+  color: var(--muted); font-size: 0.9rem; padding: 4px 10px; border-radius: 6px;
+  display: flex; justify-content: space-between; gap: 10px;
+}
+.toc a span { font-family: var(--font-mono); font-size: 0.74rem; color: var(--faint); }
+.toc a:hover, .toc a.active { background: var(--panel); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); }
+.theme-btn {
+  justify-self: start;
+  font: 600 0.8rem var(--font-body);
+  color: var(--muted); background: transparent;
+  border: 1px solid var(--rule); border-radius: 999px; padding: 6px 12px; cursor: pointer;
+}
+.theme-btn:hover { color: var(--fg); border-color: var(--faint); }
+
+/* ---------- Main column ---------- */
+main { min-width: 0; display: grid; gap: 64px; }
+.hero { display: grid; gap: 18px; }
+.trace-wrap { position: relative; height: 72px; border-bottom: 1px solid var(--rule); }
+#trace { width: 100%; height: 72px; display: block; }
+.trace-label {
+  position: absolute; right: 0; top: 0;
+  font-family: var(--font-mono); font-size: 0.7rem; color: var(--faint); letter-spacing: 0.06em;
+  background: var(--bg); padding: 0 0 0 6px;
+}
+.lede {
+  font-family: var(--font-display);
+  font-size: 2.15rem; line-height: 1.16; margin: 0; max-width: 28ch;
+  text-wrap: balance;
+}
+.lede em { color: var(--accent); font-style: italic; }
+.hero p { margin: 0; max-width: 66ch; }
+.interests { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; }
+.interests li { list-style: none; font-size: 0.82rem; padding: 4px 10px; border-radius: 6px; background: var(--accent-soft); color: var(--fg); }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 6px; }
+.stat { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; gap: 4px; }
+.stat b { font-family: var(--font-display); font-weight: 400; font-size: 2.1rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 0.78rem; color: var(--muted); }
+
+section > h2 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: 2.1rem; line-height: 1.1; margin: 0 0 6px;
+}
+.kicker { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); font-weight: 700; margin: 0 0 4px; }
+.section-note { color: var(--muted); margin: 0 0 22px; font-size: 0.92rem; }
+
+/* News */
+.news { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--rule); display: grid; gap: 14px; }
+.news li { position: relative; padding-left: 20px; display: grid; grid-template-columns: 82px minmax(0, 1fr); gap: 14px; }
+.news li::before {
+  content: ""; position: absolute; left: -6px; top: 8px; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--faint);
+}
+.news li.key::before { border-color: var(--accent); background: var(--accent); }
+.news time { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); padding-top: 2px; font-variant-numeric: tabular-nums; }
+
+/* Publication filters */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; }
+.filters button {
+  font: 600 0.82rem var(--font-body);
+  padding: 6px 13px; border-radius: 999px; cursor: pointer;
+  background: var(--panel); color: var(--muted); border: 1px solid var(--rule);
+}
+.filters button span { font-family: var(--font-mono); font-weight: 400; margin-left: 6px; color: var(--faint); }
+.filters button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.filters button[aria-pressed="true"] span { color: var(--bg); opacity: 0.7; }
+
+.pub-group + .pub-group { margin-top: 30px; }
+.group-title { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; margin: 0 0 12px; }
+.pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.pub {
+  background: var(--panel); border: 1px solid var(--rule); border-radius: 10px;
+  padding: 16px 18px; display: grid; gap: 4px;
+}
+.pub.first { border-color: color-mix(in srgb, var(--accent) 40%, var(--rule)); }
+.pub-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.pub .id { font-family: var(--font-mono); font-size: 0.72rem; color: var(--faint); }
+.badge { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; background: var(--chip); color: var(--muted); }
+.badge.ok { background: var(--ok-soft); color: var(--ok); }
+.badge.wait { background: var(--wait-soft); color: var(--wait); }
+.badge.hl { background: var(--accent-soft); color: var(--accent); }
+.pub .title { font-weight: 600; line-height: 1.4; font-size: 1rem; }
+.pub .authors { color: var(--muted); font-size: 0.9rem; }
+.pub .authors b { color: var(--fg); font-weight: 700; }
+.pub .venue { font-size: 0.88rem; font-style: italic; }
+.pub .links { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.82rem; margin-top: 2px; font-family: var(--font-mono); word-break: break-all; }
+.pub .links .pending { font-family: var(--font-body); color: var(--faint); word-break: normal; }
+
+/* Experience timeline */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; }
+.timeline li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 20px; padding: 14px 0; border-top: 1px solid var(--rule); }
+.timeline li:last-child { border-bottom: 1px solid var(--rule); }
+.timeline .when { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); padding-top: 2px; font-variant-numeric: tabular-nums; }
+.timeline .org { font-weight: 600; }
+.timeline .desc { color: var(--muted); font-size: 0.92rem; margin: 2px 0 0; }
+
+.edu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.edu div { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 16px; display: grid; gap: 6px; align-content: start; }
+.edu b { font-weight: 600; line-height: 1.35; }
+.edu em { font-style: normal; font-size: 0.9rem; color: var(--fg); }
+.edu span { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+
+.honors { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.honors li { padding-left: 22px; position: relative; }
+.honors li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 12px; height: 2px; background: var(--accent); }
+
+footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--rule); padding-top: 18px; }
+
+@media (max-width: 920px) {
+  .shell { grid-template-columns: 1fr; gap: 36px; padding-block: 24px 48px; }
+  .rail { position: static; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 16px 20px; }
+  .portrait { width: 104px; font-size: 2.4rem; }
+  .rail-id { min-width: 0; }
+  .name { font-size: 2.1rem; }
+  .rail > .email, .rail > .profiles, .rail > .theme-btn { grid-column: 1 / -1; }
+  .toc { display: none; }
+  .edu { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .lede { font-size: 1.7rem; }
+  .news li { grid-template-columns: 1fr; gap: 0; }
+  .timeline li { grid-template-columns: 1fr; gap: 2px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="rail" aria-label="Profile">
+    <div class="portrait"><img src="images/profile.jpg" alt="Soham Biren Katlariwala" onerror="this.remove()"><span aria-hidden="true">SK</span></div>
+    <div class="rail-id">
+      <h1 class="name">Soham Biren Katlariwala</h1>
+      <p class="role">Clinical machine learning · Research intern, MIT Critical Data</p>
+    </div>
+    <span class="email">sohambirenkatlariwala at gmail dot com<br>+91 9099306962</span>
+    <nav class="profiles" aria-label="Profiles">
+      <a href="Soham_Katlariwala_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      <a href="https://scholar.google.com/citations?user=znR2Im0AAAAJ&amp;hl=en" target="_blank" rel="noopener">Scholar</a>
+      <a href="https://orcid.org/0009-0008-1178-6543" target="_blank" rel="noopener">ORCID</a>
+      <a href="https://github.com/SohamBirenKatlariwala" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/soham-katlariwala/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.kaggle.com/sohamkatlariwala" target="_blank" rel="noopener">Kaggle</a>
+    </nav>
+    <nav class="toc" aria-label="Sections">
+      <a href="#about">About <span>01</span></a>
+      <a href="#news">News <span>02</span></a>
+      <a href="#publications">Publications <span>03</span></a>
+      <a href="#experience">Experience <span>04</span></a>
+      <a href="#education">Education <span>05</span></a>
+      <a href="#recognition">Recognition <span>06</span></a>
+    </nav>
+    <button class="theme-btn" id="theme-toggle" type="button">Switch theme</button>
+  </aside>
+
+  <main>
+
+    <section class="hero" id="about">
+      <div class="trace-wrap" aria-hidden="true">
+        <canvas id="trace"></canvas>
+        <span class="trace-label">LEAD II · 25 mm/s</span>
+      </div>
+      <p class="lede">Building clinical AI that stays <em>accurate, calibrated and fair</em> when it moves between hospitals.</p>
+      <p>I'm a final-year Computer Engineering student at Gujarat Technological University, a Health Science student at University of the People, and a research intern with <a href="https://criticaldata.mit.edu/" target="_blank" rel="noopener">MIT Critical Data</a> at the MIT Laboratory for Computational Physiology.</p>
+      <p>My work spans cardiology and stroke risk prediction, neuroimaging and EEG, and diagnostic-accuracy meta-analysis. Recent projects examine referral bias across catheterization laboratories, fairness in stroke risk models, and graph neural networks for pre-operative fMRI. I'm applying for thesis-based graduate programmes in clinical AI and medical imaging for Fall 2027.</p>
+      <ul class="interests" aria-label="Research interests">
+        <li>Clinical AI</li><li>Generalizability &amp; fairness</li><li>Neuroimaging &amp; EEG</li><li>Cardiology &amp; stroke</li><li>Meta-analysis</li>
+      </ul>
+      <div class="stats" aria-label="Research output">
+        <div class="stat"><b>13</b><span>papers and letters</span></div>
+        <div class="stat"><b>15</b><span>accepted abstracts</span></div>
+        <div class="stat"><b>7</b><span>first-author abstracts</span></div>
+      </div>
+    </section>
+
+    <section id="news" aria-labelledby="news-h">
+      <p class="kicker">Updates</p>
+      <h2 id="news-h">News</h2>
+      <p class="section-note">Recent presentations, acceptances and milestones.</p>
+      <ol class="news">
+        <li class="key"><time>Nov 2026</time><span>Moderated poster on trajectory-informed stroke risk prediction at the SVIN 2026 Annual Meeting, Las Vegas.</span></li>
+        <li class="key"><time>Oct 2026</time><span>Two first-author abstracts at TCT 2026, San Diego (Oct 31 – Nov 3).</span></li>
+        <li class="key"><time>Oct 2026</time><span>Two first-author posters at the Congress of Neurological Surgeons (CNS) 2026 Annual Meeting, Washington, DC.</span></li>
+        <li class="key"><time>Oct 2026</time><span>Oral presentation at IC-AICSE 2026, Lalitpur, Nepal, on hidden circularity in AQ-10 autism screening datasets.</span></li>
+        <li class="key"><time>Oct 2026</time><span>Two systematic review abstracts accepted at ASH 2026, to be published in <em>Blood</em> (December 2026).</span></li>
+        <li><time>Oct 2026</time><span>Three systematic review abstracts published in the <em>American Journal of Gastroenterology</em> supplement (ACG 2026).</span></li>
+        <li><time>Oct 2026</time><span>Letter on residual confounding in target trial emulation accepted in <em>The American Journal of Medicine</em>.</span></li>
+        <li><time>Aug 2026</time><span>Presented three papers at MetaSphere 2026, IEM Kolkata. Springer proceedings forthcoming.</span></li>
+        <li><time>Feb 2026</time><span>Joined MIT Critical Data as a research intern.</span></li>
+        <li><time>2025</time><span>Eigenvector-centrality pruning paper published at ISVC 2025 (Springer LNCS).</span></li>
+      </ol>
+    </section>
+
+    <section id="publications" aria-labelledby="pubs-h">
+      <p class="kicker">Research</p>
+      <h2 id="pubs-h">Publications</h2>
+      <p class="section-note">My name is in bold. A red outline marks work where I am first author. Full list on <a href="https://scholar.google.com/citations?user=znR2Im0AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
+
+      <div class="filters" role="group" aria-label="Filter publications">
+        <button type="button" data-filter="all" aria-pressed="true">All<span id="n-all"></span></button>
+        <button type="button" data-filter="journal" aria-pressed="false">Journal<span id="n-journal"></span></button>
+        <button type="button" data-filter="paper" aria-pressed="false">Papers<span id="n-paper"></span></button>
+        <button type="button" data-filter="abstract" aria-pressed="false">Abstracts<span id="n-abstract"></span></button>
+      </div>
+
+      <div class="pub-group" data-group="journal">
+        <p class="group-title">Journal articles and letters</p>
+        <ol class="pubs">
+          <li class="pub" data-type="journal">
+            <div class="pub-head"><span class="id">J2</span><span class="badge wait">In press</span></div>
+            <span class="title">Beyond target trial emulation: residual confounding in a statin–colorectal cancer study</span>
+            <span class="authors">Madhu Mitha Chandran, <b>Soham Biren Katlariwala</b>, J. K. Morker</span>
+            <span class="venue">The American Journal of Medicine, 2026. Letter to the editor.</span>
+            <span class="links"><a href="https://doi.org/10.1016/j.amjmed.2026.09.039" target="_blank" rel="noopener">doi:10.1016/j.amjmed.2026.09.039</a> <span class="pending">DOI registration pending</span></span>
+          </li>
+          <li class="pub" data-type="journal">
+            <div class="pub-head"><span class="id">J1</span><span class="badge ok">Published</span></div>
+            <span class="title">Rising mortality in elderly men with prostate cancer and hypertensive comorbidity: a two-decade epidemiological analysis with projections to 2035</span>
+            <span class="authors">R. Khan, A. Khan, T. Khan, H. Mubashir, <b>S. B. Katlariwala</b>, W. Ali</span>
+            <span class="venue">Journal of Saidu Medical College, vol. 16, no. 3s, 2026</span>
+            <span class="links"><a href="https://doi.org/10.52206/jsmc.2026.16.3s.1716" target="_blank" rel="noopener">doi:10.52206/jsmc.2026.16.3s.1716</a></span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="pub-group" data-group="paper">
+        <p class="group-title">Conference and workshop papers</p>
+        <ol class="pubs">
+          <li class="pub first" data-type="paper">
+            <div class="pub-head"><span class="id">C11</span><span class="badge wait">Accepted · IEEE</span><span class="badge hl">Oral</span></div>
+            <span class="title">Questioning the benchmarks: hidden circularity in AQ-10 autism screening datasets</span>
+            <span class="authors"><b>Soham Biren Katlariwala</b>, A. Saeed, H. K. Khati, M. Moradi</span>
+            <span class="venue">International Conference on AI in Computational Science and Engineering (IC-AICSE 2026), Everest Engineering College, Lalitpur, Nepal, 7 October 2026. Full paper accepted for IEEE publication.</span>
+          </li>
+          <li class="pub first" data-type="paper">
+            <div class="pub-head"><span class="id">C10</span><span class="badge wait">Forthcoming</span><span class="badge">Corresponding author</span></div>
+            <span class="title">Anatomical GraphSAGE-enhanced CNN ensemble for paediatric bone age estimation with Monte Carlo dropout</span>
+            <span class="authors"><b>S. B. Katlariwala</b>, J. D. Patel, J. A. Chauhan, N. I. Patel, D. K. Raval, C. D. Prajapati</span>
+            <span class="venue">Global Conference on Cloud Computing, Virtualization &amp; Metaverse (MetaSphere 2026), IEM Kolkata, August 2026. Springer proceedings.</span>
+          </li>
+          <li class="pub first" data-type="paper">
+            <div class="pub-head"><span class="id">C9</span><span class="badge wait">Forthcoming</span><span class="badge">Corresponding author</span></div>
+            <span class="title">Temporal cart memory and billing verification: a three-component framework for vision-based smart trolley systems</span>
+            <span class="authors"><b>S. B. Katlariwala</b>, J. A. Chauhan, J. D. Patel, N. I. Patel, D. K. Raval, C. D. Prajapati</span>
+            <span class="venue">Global Conference on Cloud Computing, Virtualization &amp; Metaverse (MetaSphere 2026), IEM Kolkata, August 2026. Springer proceedings.</span>
+          </li>
+          <li class="pub" data-type="paper">
+            <div class="pub-head"><span class="id">C8</span><span class="badge wait">Forthcoming</span><span class="badge">Corresponding author</span></div>
+            <span class="title">Criterion-level automated scoring of the FMS deep squat using interpretable 2D pose geometry</span>
+            <span class="authors">J. A. Chauhan, J. D. Patel, N. I. Patel, <b>S. B. Katlariwala</b></span>
+            <span class="venue">Global Conference on Cloud Computing, Virtualization &amp; Metaverse (MetaSphere 2026), IEM Kolkata, August 2026. Springer proceedings.</span>
+          </li>
+          <li class="pub" data-type="paper">
+            <div class="pub-head"><span class="id">C7</span><span class="badge ok">Workshop</span></div>
+            <span class="title">SAKSHI: a community-operated investigative platform for accountability in clinical AI deployment</span>
+            <span class="authors">R. Al-Louzi, H. N. Ali, A. M. C. Bank, L. A. Celi, C. Cocucci, R. Gameiro, R. Gorijavolu, N. Jaiswal, M. Koumbia, H. C. Kasimbazi, <b>S. B. Katlariwala</b>, N. Nazarian, M. M. Lucas, K. Madapati, S. Mikolutskaya, R. Mwavu, M. S. Patel, R. I. Rojas Sillery, J. Nanyonjo, A. Q. Xiang</span>
+            <span class="venue">Conference on Language Modeling (COLM) 2026 Workshop on LLM/VLM Deployment Opportunities and Risks in Healthcare, 2026</span>
+          </li>
+          <li class="pub" data-type="paper">
+            <div class="pub-head"><span class="id">C6</span><span class="badge ok">Published</span></div>
+            <span class="title">Evaluation of deep learning architectures for network intrusion detection</span>
+            <span class="authors">Priya Arora, <b>Soham Biren Katlariwala</b>, Mitali Raj, Mahdisa Moradi, Sunita Sahu</span>
+            <span class="venue">2026 1st International Conference on Advancing Sustainable Solutions through Technologies (ICASST), IEEE, 2026, pp. 1–6</span>
+            <span class="links"><a href="https://doi.org/10.1109/ICASST68917.2026.11484132" target="_blank" rel="noopener">doi:10.1109/ICASST68917.2026.11484132</a></span>
+          </li>
+          <li class="pub" data-type="paper">
+            <div class="pub-head"><span class="id">C5</span><span class="badge ok">Published</span></div>
+            <span class="title">Effective fine-tuning with eigenvector centrality based pruning</span>
+            <span class="authors">S. Chowdhury, <b>S. B. Katlariwala</b>, D. Kashyap</span>
+            <span class="venue">Advances in Visual Computing: International Symposium on Visual Computing (ISVC 2025), Lecture Notes in Computer Science, Springer, 2026, pp. 3–15</span>
+            <span class="links"><a href="https://doi.org/10.1007/978-3-032-14492-8_1" target="_blank" rel="noopener">doi:10.1007/978-3-032-14492-8_1</a><a href="https://arxiv.org/abs/2512.12543" target="_blank" rel="noopener">arXiv:2512.12543</a></span>
+          </li>
+          <li class="pub" data-type="paper">
+            <div class="pub-head"><span class="id">C4</span><span class="badge ok">Published</span></div>
+            <span class="title">YOLOv5 with SVM-aided post-classification for high-precision skin lesion detection</span>
+            <span class="authors">R. Srividhya, Vaibhav C. Gandhi, Anitha D, Sudha Rajesh, <b>Soham Biren Katlariwala</b>, Krunal Panchal</span>
+            <span class="venue">2025 International Conference on Sustainable Technologies for Humanity and Smart World (HSWTech), IEEE, 2025, pp. 1–6</span>
+            <span class="links"><a href="https://doi.org/10.1109/HSWTech64936.2025.11278157" target="_blank" rel="noopener">doi:10.1109/HSWTech64936.2025.11278157</a></span>
+          </li>
+          <li class="pub" data-type="paper">
+            <div class="pub-head"><span class="id">C3</span><span class="badge ok">Published</span></div>
+            <span class="title">Hybrid deep learning model: weather classification using ResNet-50 and SVM</span>
+            <span class="authors">Vaibhav C. Gandhi, Krunal Panchal, Jignasha Lakhtaria, Chirag C. Gami, Neha Gameti, <b>Soham Biren Katlariwala</b></span>
+            <span class="venue">2025 International Conference on Sustainable Technologies for Humanity and Smart World (HSWTech), IEEE, 2025, pp. 1–7</span>
+            <span class="links"><a href="https://doi.org/10.1109/HSWTech64936.2025.11277422" target="_blank" rel="noopener">doi:10.1109/HSWTech64936.2025.11277422</a></span>
+          </li>
+          <li class="pub first" data-type="paper">
+            <div class="pub-head"><span class="id">C2</span><span class="badge ok">Published</span><span class="badge hl">Most cited</span></div>
+            <span class="title">TriBoost and beyond: advanced machine learning approaches for diabetes risk prediction</span>
+            <span class="authors"><b>Soham Biren Katlariwala</b>, Vaibhav C. Gandhi, Nirav Patel, Devendra Parmar, Ayushi Desai</span>
+            <span class="venue">2025 International Conference on Electronics and Renewable Systems (ICEARS), IEEE, 2025, pp. 1780–1785</span>
+            <span class="links"><a href="https://doi.org/10.1109/ICEARS64219.2025.10941310" target="_blank" rel="noopener">doi:10.1109/ICEARS64219.2025.10941310</a></span>
+          </li>
+          <li class="pub first" data-type="paper">
+            <div class="pub-head"><span class="id">C1</span><span class="badge ok">Published</span><span class="badge">Sole author</span></div>
+            <span class="title">BERT-based detection of AI-generated text for content verification</span>
+            <span class="authors"><b>S. B. Katlariwala</b></span>
+            <span class="venue">2024 REYES Proceedings (Remote Experience for Young Engineers and Scientists), Old Dominion University Digital Commons, paper 14</span>
+            <span class="links"><a href="https://digitalcommons.odu.edu/reyes-2024/14" target="_blank" rel="noopener">digitalcommons.odu.edu/reyes-2024/14</a></span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="pub-group" data-group="abstract">
+        <p class="group-title">Accepted meeting abstracts: American Society of Hematology (ASH) 2026, to be published in Blood (December 2026)</p>
+        <ol class="pubs">
+          <li class="pub" data-type="abstract">
+            <div class="pub-head"><span class="id">abs26-12948</span><span class="badge ok">Accepted · Blood</span></div>
+            <span class="title">Diagnostic accuracy of artificial intelligence in differentiating iron deficiency anemia from thalassemia trait: a systematic review and meta-analysis</span>
+            <span class="authors">V. Srinivasan, S. Bhavanam, M. Zafarullah, H. Sajid, M. M. Chandran, <b>S. B. Katlariwala</b>, N. Kukreja, S. Shah, S. R. Thadisina, M. Raslan, H. Umer, N. Sahar</span>
+            <span class="venue">American Society of Hematology (ASH) 2026 Annual Meeting; to appear in Blood, December 2026</span>
+          </li>
+          <li class="pub" data-type="abstract">
+            <div class="pub-head"><span class="id">abs26-13932</span><span class="badge ok">Accepted · Blood</span></div>
+            <span class="title">Diagnostic accuracy of artificial intelligence/machine learning assisted flow cytometry for measurable residual disease detection in leukemia: a systematic review and meta-analysis</span>
+            <span class="authors">K. S. K. Sakalabaktula, M. Hayat, L. Rehman, D. R. Kuraku, B. Latif, A. Adel, <b>S. B. Katlariwala</b>, H. Yousaf, M. K. Walizai, R. Ramzan, B. Kambhampati, S. Javed, N. Keshapogu</span>
+            <span class="venue">American Society of Hematology (ASH) 2026 Annual Meeting; to appear in Blood, December 2026</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="pub-group" data-group="abstract">
+        <p class="group-title">Published meeting abstracts: American Journal of Gastroenterology (ACG 2026 supplement)</p>
+        <ol class="pubs">
+          <li class="pub" data-type="abstract">
+            <div class="pub-head"><span class="id">S1142</span><span class="badge ok">Published</span></div>
+            <span class="title">Computer-aided detection versus computer-aided diagnosis of early Barrett's neoplasia: a systematic review and meta-analysis</span>
+            <span class="authors">I. Qamar, M. Hayat, M. M. Chandran, <b>S. B. Katlariwala</b>, D. M. Sikander, S. Asad, S. Khan, H. Sajid, K. Jothilingam, M. T. Tariq, A. Ullah</span>
+            <span class="venue">American Journal of Gastroenterology, vol. 121, no. 10S1, p. S248, 2026</span>
+            <span class="links"><a href="https://doi.org/10.14309/01.ajg.0001213820.29928.0b" target="_blank" rel="noopener">doi:10.14309/01.ajg.0001213820.29928.0b</a> <span class="pending">DOI registration pending</span></span>
+          </li>
+          <li class="pub" data-type="abstract">
+            <div class="pub-head"><span class="id">S3467</span><span class="badge ok">Published</span></div>
+            <span class="title">Diagnostic precision and operational efficiency of AI-assisted esophagogastroduodenoscopy for gastric neoplasm detection: a systematic review and meta-analysis of randomized controlled trials</span>
+            <span class="authors">S. Mohammed, S. Marupuru, D. M. Sikander, M. M. Chandran, <b>S. B. Katlariwala</b>, H. Sajid, M. Hayat, S. Khan, K. Jothilingam, S. Z. A. Shah, M. T. Tariq, D. R. Kuraku, C. Chandrashekar</span>
+            <span class="venue">American Journal of Gastroenterology, vol. 121, no. 10S1, p. S755, 2026</span>
+            <span class="links"><a href="https://doi.org/10.14309/01.ajg.0001223120.73712.78" target="_blank" rel="noopener">doi:10.14309/01.ajg.0001223120.73712.78</a> <span class="pending">DOI registration pending</span></span>
+          </li>
+          <li class="pub" data-type="abstract">
+            <div class="pub-head"><span class="id">S2917</span><span class="badge ok">Published</span></div>
+            <span class="title">Artificial intelligence versus conventional prognostic scores for mortality prediction in acute-on-chronic liver failure: a systematic review</span>
+            <span class="authors">S. Singh, D. M. Sikander, R. Vijaykumar, M. M. Chandran, <b>S. B. Katlariwala</b>, N. Keshapogu, H. Sajid, M. Hayat, S. Z. A. Shah, S. Marupuru, K. Jothilingam, D. R. Kuraku, M. T. Tariq</span>
+            <span class="venue">American Journal of Gastroenterology, vol. 121, no. 10S1, p. S634, 2026</span>
+            <span class="links"><a href="https://doi.org/10.14309/01.ajg.0001220920.71799.8e" target="_blank" rel="noopener">doi:10.14309/01.ajg.0001220920.71799.8e</a> <span class="pending">DOI registration pending</span></span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="pub-group" data-group="abstract">
+        <p class="group-title">Conference abstracts and presentations</p>
+        <ol class="pubs">
+          <li class="pub first" data-type="abstract">
+            <div class="pub-head"><span class="id">A7</span><span class="badge hl">Oral</span><span class="badge wait">Full paper accepted · IEEE</span></div>
+            <span class="title">Questioning the benchmarks: hidden circularity in AQ-10 autism screening datasets</span>
+            <span class="authors"><b>S. B. Katlariwala</b>, A. Saeed, H. K. Khati, M. Moradi</span>
+            <span class="venue">International Conference on AI in Computational Science and Engineering (IC-AICSE 2026), Everest Engineering College, Lalitpur, Nepal, 7 October 2026</span>
+          </li>
+          <li class="pub first" data-type="abstract">
+            <div class="pub-head"><span class="id">A6</span><span class="badge ok">Accepted</span></div>
+            <span class="title">Institutional referral threshold bias limits generalizability of cardiac AI across 5 international catheterization laboratories</span>
+            <span class="authors"><b>S. B. Katlariwala</b>, S. Mohammed, V. Gandhi, I. Qamar, M. Moradi</span>
+            <span class="venue">Transcatheter Cardiovascular Therapeutics (TCT) 2026, San Diego, CA, Oct 31 – Nov 3, 2026</span>
+          </li>
+          <li class="pub first" data-type="abstract">
+            <div class="pub-head"><span class="id">A5</span><span class="badge ok">Accepted</span></div>
+            <span class="title">Valvular heart disease severity modifies the discriminative power of clinical coronary artery disease predictors: an interpretable machine learning analysis</span>
+            <span class="authors"><b>S. B. Katlariwala</b>, V. A. Chunchu, V. Gandhi, D. R. Kuraku, M. Moradi, P. Patel, S. C. Kanakamedala, N. Keshapogu, V. B. Chenna, J. M. Pina</span>
+            <span class="venue">Transcatheter Cardiovascular Therapeutics (TCT) 2026, San Diego, CA, Oct 31 – Nov 3, 2026</span>
+          </li>
+          <li class="pub first" data-type="abstract">
+            <div class="pub-head"><span class="id">A4</span><span class="badge hl">Moderated poster</span></div>
+            <span class="title">Trajectory-informed stroke risk prediction using disease duration and glycemic burden in a nationally representative US adult sample</span>
+            <span class="authors"><b>S. Katlariwala</b>, K. Jothilingam, V. Gandhi, M. Moradi</span>
+            <span class="venue">Society of Vascular and Interventional Neurology (SVIN) 2026 Annual Meeting, Las Vegas, NV, November 2026</span>
+          </li>
+          <li class="pub first" data-type="abstract">
+            <div class="pub-head"><span class="id">A3</span><span class="badge ok">Poster</span></div>
+            <span class="title">Logistic regression outperforms deep ensembles for tabular stroke risk prediction: a fairness-aware benchmarking study</span>
+            <span class="authors"><b>S. Katlariwala</b>, K. Jothilingam, V. Gandhi, M. Moradi</span>
+            <span class="venue">Society of Vascular and Interventional Neurology (SVIN) 2026 Annual Meeting, Las Vegas, NV, November 2026</span>
+          </li>
+          <li class="pub first" data-type="abstract">
+            <div class="pub-head"><span class="id">A2</span><span class="badge ok">Poster</span></div>
+            <span class="title">Graph neural network analysis of pre-operative resting-state fMRI in eloquent-area diffuse glioma: a systematic review and meta-analysis</span>
+            <span class="authors"><b>S. B. Katlariwala</b>, A. Pineda Guerrero, J. Romero Moreno, M. D. Saxena, T. Muraleedharan, S. S. Diwan, M. M. Chandran, I. Qamar, M. Mal</span>
+            <span class="venue">Congress of Neurological Surgeons (CNS) 2026 Annual Meeting, Washington, DC, Oct 31 – Nov 4, 2026</span>
+          </li>
+          <li class="pub first" data-type="abstract">
+            <div class="pub-head"><span class="id">A1</span><span class="badge ok">Poster</span></div>
+            <span class="title">Machine learning of EEG biomarkers for Parkinson's disease subtyping and deep brain stimulation candidate stratification: a systematic review and meta-analysis</span>
+            <span class="authors"><b>S. B. Katlariwala</b>, A. Pineda Guerrero, J. Romero Moreno, M. D. Saxena, T. Muraleedharan, S. S. Diwan, M. M. Chandran, I. Qamar, M. Mal</span>
+            <span class="venue">Congress of Neurological Surgeons (CNS) 2026 Annual Meeting, Washington, DC, Oct 31 – Nov 4, 2026</span>
+          </li>
+        </ol>
+      </div>
+
+    </section>
+
+    <section id="experience" aria-labelledby="exp-h">
+      <p class="kicker">Path</p>
+      <h2 id="exp-h">Research experience</h2>
+      <p class="section-note">Most recent first.</p>
+      <ol class="timeline">
+        <li><span class="when">2026 – now</span><div><div class="org">MIT Critical Data, MIT Laboratory for Computational Physiology</div><p class="desc">Research intern (remote). Accountability in clinical AI deployment (SAKSHI).</p></div></li>
+        <li><span class="when">2025</span><div><div class="org">University of California, Berkeley (REYES)</div><p class="desc">Research intern. AI and quantum-enhanced fiber-optic biosensing.</p></div></li>
+        <li><span class="when">2025</span><div><div class="org">The LNM Institute of Information Technology</div><p class="desc">Research intern. Quantum entanglement and SVD in bipartite systems.</p></div></li>
+        <li><span class="when">2025</span><div><div class="org">Texas A&amp;M University–Kingsville</div><p class="desc">Research intern. Eigenvector-centrality pruning for efficient CNN fine-tuning (ISVC 2025).</p></div></li>
+        <li><span class="when">2024</span><div><div class="org">University of California, Berkeley (REYES)</div><p class="desc">Research intern. BERT-based detection of AI-generated text.</p></div></li>
+      </ol>
+    </section>
+
+    <section id="education" aria-labelledby="edu-h">
+      <p class="kicker">Study</p>
+      <h2 id="edu-h">Education</h2>
+      <p class="section-note">Three concurrent undergraduate degrees.</p>
+      <div class="edu">
+        <div><b>Gujarat Technological University</b><em>Bachelor of Engineering (Honours) in Computer Engineering, with Honours in Artificial Intelligence and Machine Learning · 4-year programme</em><span>2023 – 2027</span></div>
+        <div><b>Indian Institute of Technology Madras</b><em>Bachelor of Science (BS) in Data Science and Applications · 4-year programme</em><span>2024 – 2027</span></div>
+        <div><b>University of the People</b><em>Bachelor of Health Science (Honours)</em><span>2025 – 2027</span></div>
+      </div>
+    </section>
+
+    <section id="recognition" aria-labelledby="rec-h">
+      <p class="kicker">Recognition</p>
+      <h2 id="rec-h">Selected recognition</h2>
+      <ul class="honors">
+        <li>Moderated poster selection, SVIN 2026 Annual Meeting.</li>
+        <li>Oral presentation and certificate of presentation, IC-AICSE 2026 (technically supported by IEEE Nepal Section).</li>
+        <li>Certificates of presentation for three papers, MetaSphere 2026.</li>
+        <li>Two first-author posters at the Congress of Neurological Surgeons 2026 Annual Meeting.</li>
+      </ul>
+    </section>
+
+    <footer>© 2026 Soham Biren Katlariwala. Layout inspired by <a href="https://github.com/jonbarron/website" target="_blank" rel="noopener">Jon Barron's template</a>.</footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  /* Theme toggle; remembers the choice when storage is available. */
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t === 'dark';
+    return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  }
+  function label() { btn.textContent = isDark() ? 'Light theme' : 'Dark theme'; }
+  try { var saved = localStorage.getItem('sk-theme'); if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved); } catch (e) {}
+  label();
+
+  /* Publication filters */
+  var buttons = document.querySelectorAll('.filters button');
+  var pubs = document.querySelectorAll('.pub');
+  var groups = document.querySelectorAll('.pub-group');
+  var counts = { all: pubs.length, journal: 0, paper: 0, abstract: 0, review: 0 };
+  pubs.forEach(function (p) { counts[p.dataset.type] = (counts[p.dataset.type] || 0) + 1; });
+  Object.keys(counts).forEach(function (k) { var el = document.getElementById('n-' + k); if (el) el.textContent = counts[k]; });
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.dataset.filter;
+      buttons.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      groups.forEach(function (g) { g.hidden = !(f === 'all' || g.dataset.group === f); });
+    });
+  });
+
+  /* Highlight the current section in the rail */
+  var links = document.querySelectorAll('.toc a');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); });
+        }
+      });
+    }, { rootMargin: '-35% 0px -60% 0px' });
+    document.querySelectorAll('main section[id]').forEach(function (s) { obs.observe(s); });
+  }
+
+  /* Signal trace: a PQRST-shaped waveform scrolling across ECG paper. */
+  var cv = document.getElementById('trace');
+  var ctx = cv.getContext('2d');
+  var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var W = 0, H = 72, x0 = 0;
+  function beat(t) {
+    function g(c, w, a) { return a * Math.exp(-Math.pow((t - c) / w, 2)); }
+    return g(0.18, 0.035, 0.12) - g(0.355, 0.012, 0.14) + g(0.38, 0.012, 1.0) - g(0.405, 0.014, 0.28) + g(0.62, 0.06, 0.26);
+  }
+  function resize() {
+    var dpr = window.devicePixelRatio || 1;
+    W = cv.clientWidth;
+    cv.width = Math.max(1, Math.round(W * dpr)); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function draw() {
+    var cs = getComputedStyle(root);
+    var line = cs.getPropertyValue('--accent').trim() || '#b3263e';
+    var grid = cs.getPropertyValue('--rule').trim() || '#e2e5ea';
+    var period = 190, base = H * 0.64, amp = H * 0.52;
+    ctx.clearRect(0, 0, W, H);
+    ctx.strokeStyle = grid; ctx.lineWidth = 1;
+    for (var i = 0, gx = 0; gx < W; gx += 19, i++) {
+      ctx.globalAlpha = i % 5 === 0 ? 0.9 : 0.35;
+      ctx.beginPath(); ctx.moveTo(gx + 0.5, 0); ctx.lineTo(gx + 0.5, H); ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = line; ctx.lineWidth = 1.8; ctx.lineJoin = 'round';
+    ctx.beginPath();
+    for (var x = 0; x <= W; x++) {
+      var t = ((((x + x0) % period) + period) % period) / period;
+      var y = base - beat(t) * amp;
+      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  }
+  function loop() { x0 += 1.1; draw(); requestAnimationFrame(loop); }
+  resize(); draw();
+  window.addEventListener('resize', function () { resize(); draw(); });
+  if (!reduce) requestAnimationFrame(loop);
+
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('sk-theme', next); } catch (e) {}
+    label(); draw();
+  });
+})();
+</script>
+</body>
+</html>
