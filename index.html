@@ -190,6 +190,12 @@ section > h2 {
 .pub .links .pending { font-family: var(--font-body); color: var(--faint); word-break: normal; }
 
 /* Experience timeline */
+.confs { list-style: none; margin: 0; padding: 0; display: grid; }
+.confs li { display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 20px; padding: 14px 0; border-top: 1px solid var(--rule); }
+.confs li:last-child { border-bottom: 1px solid var(--rule); }
+.confs .when { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); padding-top: 2px; }
+.confs .org { font-weight: 600; }
+.confs .desc { color: var(--muted); font-size: 0.92rem; margin: 2px 0 0; }
 .timeline { list-style: none; margin: 0; padding: 0; display: grid; }
 .timeline li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 20px; padding: 14px 0; border-top: 1px solid var(--rule); }
 .timeline li:last-child { border-bottom: 1px solid var(--rule); }
@@ -221,6 +227,7 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 560px) {
+  .confs li { grid-template-columns: 1fr; gap: 2px; }
   .lede { font-size: 1.7rem; }
   .news li { grid-template-columns: 1fr; gap: 0; }
   .timeline li { grid-template-columns: 1fr; gap: 2px; }
@@ -250,9 +257,10 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
       <a href="#about">About <span>01</span></a>
       <a href="#news">News <span>02</span></a>
       <a href="#publications">Publications <span>03</span></a>
-      <a href="#experience">Experience <span>04</span></a>
-      <a href="#education">Education <span>05</span></a>
-      <a href="#recognition">Recognition <span>06</span></a>
+      <a href="#conferences">Conferences <span>04</span></a>
+      <a href="#experience">Experience <span>05</span></a>
+      <a href="#education">Education <span>06</span></a>
+      <a href="#recognition">Recognition <span>07</span></a>
     </nav>
     <button class="theme-btn" id="theme-toggle" type="button">Switch theme</button>
   </aside>
@@ -298,13 +306,12 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
     <section id="publications" aria-labelledby="pubs-h">
       <p class="kicker">Research</p>
       <h2 id="pubs-h">Publications</h2>
-      <p class="section-note">My name is in bold. A red outline marks work where I am first author. Full list on <a href="https://scholar.google.com/citations?user=znR2Im0AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
+      <p class="section-note">My name is in bold. A red outline marks work where I am first author. Conference abstracts are listed by meeting under Conferences. Full list on <a href="https://scholar.google.com/citations?user=znR2Im0AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
 
       <div class="filters" role="group" aria-label="Filter publications">
         <button type="button" data-filter="all" aria-pressed="true">All<span id="n-all"></span></button>
         <button type="button" data-filter="journal" aria-pressed="false">Journal<span id="n-journal"></span></button>
         <button type="button" data-filter="paper" aria-pressed="false">Papers<span id="n-paper"></span></button>
-        <button type="button" data-filter="abstract" aria-pressed="false">Abstracts<span id="n-abstract"></span></button>
       </div>
 
       <div class="pub-group" data-group="journal">
@@ -405,99 +412,22 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
         </ol>
       </div>
 
-      <div class="pub-group" data-group="abstract">
-        <p class="group-title">Accepted meeting abstracts: American Society of Hematology (ASH) 2026, to be published in Blood (December 2026)</p>
-        <ol class="pubs">
-          <li class="pub" data-type="abstract">
-            <div class="pub-head"><span class="id">abs26-12948</span><span class="badge ok">Accepted · Blood</span></div>
-            <span class="title">Diagnostic accuracy of artificial intelligence in differentiating iron deficiency anemia from thalassemia trait: a systematic review and meta-analysis</span>
-            <span class="authors">V. Srinivasan, S. Bhavanam, M. Zafarullah, H. Sajid, M. M. Chandran, <b>S. B. Katlariwala</b>, N. Kukreja, S. Shah, S. R. Thadisina, M. Raslan, H. Umer, N. Sahar</span>
-            <span class="venue">American Society of Hematology (ASH) 2026 Annual Meeting; to appear in Blood, December 2026</span>
-          </li>
-          <li class="pub" data-type="abstract">
-            <div class="pub-head"><span class="id">abs26-13932</span><span class="badge ok">Accepted · Blood</span></div>
-            <span class="title">Diagnostic accuracy of artificial intelligence/machine learning assisted flow cytometry for measurable residual disease detection in leukemia: a systematic review and meta-analysis</span>
-            <span class="authors">K. S. K. Sakalabaktula, M. Hayat, L. Rehman, D. R. Kuraku, B. Latif, A. Adel, <b>S. B. Katlariwala</b>, H. Yousaf, M. K. Walizai, R. Ramzan, B. Kambhampati, S. Javed, N. Keshapogu</span>
-            <span class="venue">American Society of Hematology (ASH) 2026 Annual Meeting; to appear in Blood, December 2026</span>
-          </li>
-        </ol>
-      </div>
+    </section>
 
-      <div class="pub-group" data-group="abstract">
-        <p class="group-title">Published meeting abstracts: American Journal of Gastroenterology (ACG 2026 supplement)</p>
-        <ol class="pubs">
-          <li class="pub" data-type="abstract">
-            <div class="pub-head"><span class="id">S1142</span><span class="badge ok">Published</span></div>
-            <span class="title">Computer-aided detection versus computer-aided diagnosis of early Barrett's neoplasia: a systematic review and meta-analysis</span>
-            <span class="authors">I. Qamar, M. Hayat, M. M. Chandran, <b>S. B. Katlariwala</b>, D. M. Sikander, S. Asad, S. Khan, H. Sajid, K. Jothilingam, M. T. Tariq, A. Ullah</span>
-            <span class="venue">American Journal of Gastroenterology, vol. 121, no. 10S1, p. S248, 2026</span>
-            <span class="links"><a href="https://doi.org/10.14309/01.ajg.0001213820.29928.0b" target="_blank" rel="noopener">doi:10.14309/01.ajg.0001213820.29928.0b</a> <span class="pending">DOI registration pending</span></span>
-          </li>
-          <li class="pub" data-type="abstract">
-            <div class="pub-head"><span class="id">S3467</span><span class="badge ok">Published</span></div>
-            <span class="title">Diagnostic precision and operational efficiency of AI-assisted esophagogastroduodenoscopy for gastric neoplasm detection: a systematic review and meta-analysis of randomized controlled trials</span>
-            <span class="authors">S. Mohammed, S. Marupuru, D. M. Sikander, M. M. Chandran, <b>S. B. Katlariwala</b>, H. Sajid, M. Hayat, S. Khan, K. Jothilingam, S. Z. A. Shah, M. T. Tariq, D. R. Kuraku, C. Chandrashekar</span>
-            <span class="venue">American Journal of Gastroenterology, vol. 121, no. 10S1, p. S755, 2026</span>
-            <span class="links"><a href="https://doi.org/10.14309/01.ajg.0001223120.73712.78" target="_blank" rel="noopener">doi:10.14309/01.ajg.0001223120.73712.78</a> <span class="pending">DOI registration pending</span></span>
-          </li>
-          <li class="pub" data-type="abstract">
-            <div class="pub-head"><span class="id">S2917</span><span class="badge ok">Published</span></div>
-            <span class="title">Artificial intelligence versus conventional prognostic scores for mortality prediction in acute-on-chronic liver failure: a systematic review</span>
-            <span class="authors">S. Singh, D. M. Sikander, R. Vijaykumar, M. M. Chandran, <b>S. B. Katlariwala</b>, N. Keshapogu, H. Sajid, M. Hayat, S. Z. A. Shah, S. Marupuru, K. Jothilingam, D. R. Kuraku, M. T. Tariq</span>
-            <span class="venue">American Journal of Gastroenterology, vol. 121, no. 10S1, p. S634, 2026</span>
-            <span class="links"><a href="https://doi.org/10.14309/01.ajg.0001220920.71799.8e" target="_blank" rel="noopener">doi:10.14309/01.ajg.0001220920.71799.8e</a> <span class="pending">DOI registration pending</span></span>
-          </li>
-        </ol>
-      </div>
-
-      <div class="pub-group" data-group="abstract">
-        <p class="group-title">Conference abstracts and presentations</p>
-        <ol class="pubs">
-          <li class="pub first" data-type="abstract">
-            <div class="pub-head"><span class="id">A7</span><span class="badge hl">Oral</span><span class="badge wait">Full paper accepted · IEEE</span></div>
-            <span class="title">Questioning the benchmarks: hidden circularity in AQ-10 autism screening datasets</span>
-            <span class="authors"><b>S. B. Katlariwala</b>, A. Saeed, H. K. Khati, M. Moradi</span>
-            <span class="venue">International Conference on AI in Computational Science and Engineering (IC-AICSE 2026), Everest Engineering College, Lalitpur, Nepal, 7 October 2026</span>
-          </li>
-          <li class="pub first" data-type="abstract">
-            <div class="pub-head"><span class="id">A6</span><span class="badge ok">Accepted</span></div>
-            <span class="title">Institutional referral threshold bias limits generalizability of cardiac AI across 5 international catheterization laboratories</span>
-            <span class="authors"><b>S. B. Katlariwala</b>, S. Mohammed, V. Gandhi, I. Qamar, M. Moradi</span>
-            <span class="venue">Transcatheter Cardiovascular Therapeutics (TCT) 2026, San Diego, CA, Oct 31 – Nov 3, 2026</span>
-          </li>
-          <li class="pub first" data-type="abstract">
-            <div class="pub-head"><span class="id">A5</span><span class="badge ok">Accepted</span></div>
-            <span class="title">Valvular heart disease severity modifies the discriminative power of clinical coronary artery disease predictors: an interpretable machine learning analysis</span>
-            <span class="authors"><b>S. B. Katlariwala</b>, V. A. Chunchu, V. Gandhi, D. R. Kuraku, M. Moradi, P. Patel, S. C. Kanakamedala, N. Keshapogu, V. B. Chenna, J. M. Pina</span>
-            <span class="venue">Transcatheter Cardiovascular Therapeutics (TCT) 2026, San Diego, CA, Oct 31 – Nov 3, 2026</span>
-          </li>
-          <li class="pub first" data-type="abstract">
-            <div class="pub-head"><span class="id">A4</span><span class="badge hl">Moderated poster</span></div>
-            <span class="title">Trajectory-informed stroke risk prediction using disease duration and glycemic burden in a nationally representative US adult sample</span>
-            <span class="authors"><b>S. Katlariwala</b>, K. Jothilingam, V. Gandhi, M. Moradi</span>
-            <span class="venue">Society of Vascular and Interventional Neurology (SVIN) 2026 Annual Meeting, Las Vegas, NV, November 2026</span>
-          </li>
-          <li class="pub first" data-type="abstract">
-            <div class="pub-head"><span class="id">A3</span><span class="badge ok">Poster</span></div>
-            <span class="title">Logistic regression outperforms deep ensembles for tabular stroke risk prediction: a fairness-aware benchmarking study</span>
-            <span class="authors"><b>S. Katlariwala</b>, K. Jothilingam, V. Gandhi, M. Moradi</span>
-            <span class="venue">Society of Vascular and Interventional Neurology (SVIN) 2026 Annual Meeting, Las Vegas, NV, November 2026</span>
-          </li>
-          <li class="pub first" data-type="abstract">
-            <div class="pub-head"><span class="id">A2</span><span class="badge ok">Poster</span></div>
-            <span class="title">Graph neural network analysis of pre-operative resting-state fMRI in eloquent-area diffuse glioma: a systematic review and meta-analysis</span>
-            <span class="authors"><b>S. B. Katlariwala</b>, A. Pineda Guerrero, J. Romero Moreno, M. D. Saxena, T. Muraleedharan, S. S. Diwan, M. M. Chandran, I. Qamar, M. Mal</span>
-            <span class="venue">Congress of Neurological Surgeons (CNS) 2026 Annual Meeting, Washington, DC, Oct 31 – Nov 4, 2026</span>
-          </li>
-          <li class="pub first" data-type="abstract">
-            <div class="pub-head"><span class="id">A1</span><span class="badge ok">Poster</span></div>
-            <span class="title">Machine learning of EEG biomarkers for Parkinson's disease subtyping and deep brain stimulation candidate stratification: a systematic review and meta-analysis</span>
-            <span class="authors"><b>S. B. Katlariwala</b>, A. Pineda Guerrero, J. Romero Moreno, M. D. Saxena, T. Muraleedharan, S. S. Diwan, M. M. Chandran, I. Qamar, M. Mal</span>
-            <span class="venue">Congress of Neurological Surgeons (CNS) 2026 Annual Meeting, Washington, DC, Oct 31 – Nov 4, 2026</span>
-          </li>
-        </ol>
-      </div>
-
+    <section id="conferences" aria-labelledby="conf-h">
+      <p class="kicker">Presentations</p>
+      <h2 id="conf-h">Conferences</h2>
+      <p class="section-note">Accepted abstracts and presentations, grouped by meeting.</p>
+      <ul class="confs">
+        <li><span class="when">2026</span><div><div class="org">Transcatheter Cardiovascular Therapeutics (TCT 2026), San Diego, CA</div><p class="desc">2 abstracts, both first author: interpretable ML for coronary artery disease, and cross-site generalizability of cardiac AI.</p></div></li>
+        <li><span class="when">2026</span><div><div class="org">Society of Vascular and Interventional Neurology (SVIN 2026), Las Vegas, NV</div><p class="desc">4 abstracts, 2 as first author, including a <b>moderated poster</b> on stroke risk prediction.</p></div></li>
+        <li><span class="when">2026</span><div><div class="org">Congress of Neurological Surgeons (CNS 2026), Washington, DC</div><p class="desc">2 first-author posters: graph neural networks for pre-operative fMRI in glioma, and EEG machine learning in Parkinson's disease.</p></div></li>
+        <li><span class="when">2026</span><div><div class="org">International Conference on AI in Computational Science and Engineering (IC-AICSE 2026), Lalitpur, Nepal</div><p class="desc"><b>Oral presentation</b>, first author; full paper accepted for IEEE publication.</p></div></li>
+        <li><span class="when">2026</span><div><div class="org">American Society of Hematology (ASH 2026)</div><p class="desc">2 systematic review abstracts on AI in hematology, to be published in <em>Blood</em>.</p></div></li>
+        <li><span class="when">2026</span><div><div class="org">American College of Gastroenterology (ACG 2026)</div><p class="desc">3 systematic review abstracts on AI in gastroenterology, published in the <em>American Journal of Gastroenterology</em>.</p></div></li>
+        <li><span class="when">2026</span><div><div class="org">MetaSphere 2026, IEM Kolkata</div><p class="desc">3 papers presented, corresponding author on all three; Springer proceedings forthcoming.</p></div></li>
+        <li><span class="when">—</span><div><div class="org">AADMD One Voice Conference (Alliance for Oral Health Across Borders)</div><p class="desc">Poster: AI-driven severity grading of dental caries, systematic review and meta-analysis.</p></div></li>
+      </ul>
     </section>
 
     <section id="experience" aria-labelledby="exp-h">
