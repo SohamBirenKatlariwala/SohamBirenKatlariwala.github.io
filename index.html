@@ -7,290 +7,277 @@
 <meta name="description" content="Soham Biren Katlariwala: clinical machine learning, cardiology and stroke AI, neuroimaging and EEG, evidence synthesis.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: sticky profile rail (left) + reading column (right); a live signal trace is the single signature element. */
 :root {
-  --bg: #f6f7f9;
-  --panel: #ffffff;
-  --fg: #1b2028;
-  --muted: #5b6573;
-  --faint: #8a93a0;
-  --rule: #e2e5ea;
-  --accent: #b3263e;
-  --accent-soft: #f8e7ea;
-  --link: #1d5a8c;
-  --chip: #eef1f5;
-  --ok: #1f7a55; --ok-soft: #e3f3ec;
-  --wait: #8a5a10; --wait-soft: #faf0de;
-  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --font-body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
-  --shadow: 0 1px 2px rgba(20, 28, 40, 0.05), 0 6px 24px rgba(20, 28, 40, 0.05);
+  --bg: #ffffff; --panel: #ffffff; --fg: #17252c; --muted: #55626b; --faint: #8b959c; --rule: #e7e9eb;
+  --accent: #a51c30; --accent-soft: #f7e8ea; --link: #17252c; --chip: #f3f4f5; --sheet: #fbfbfa;
+  --ok: #1f7a55; --ok-soft: #e5f3ec; --wait: #8a5a10; --wait-soft: #faf0de;
+  --font-display: "Newsreader", "Iowan Old Style", Palatino, Georgia, serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0f1217; --panel: #161a21; --fg: #e6e9ee; --muted: #a2abb8; --faint: #6f7987; --rule: #262c35;
-    --accent: #ff6b81; --accent-soft: #3a1c23; --link: #8cc3f0; --chip: #1e242d;
-    --ok: #6fd3a5; --ok-soft: #15302a; --wait: #f2c27a; --wait-soft: #33281a;
-    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px rgba(0,0,0,0.25);
-    color-scheme: dark;
+    --bg: #111416; --panel: #161a1d; --fg: #e8eaeb; --muted: #a9b1b6; --faint: #737d84; --rule: #262c30;
+    --accent: #f07a8a; --accent-soft: #3a1d22; --link: #e8eaeb; --chip: #1d2226; --sheet: #1a1f22;
+    --ok: #6fd3a5; --ok-soft: #15302a; --wait: #f2c27a; --wait-soft: #33281a; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0f1217; --panel: #161a21; --fg: #e6e9ee; --muted: #a2abb8; --faint: #6f7987; --rule: #262c35;
-  --accent: #ff6b81; --accent-soft: #3a1c23; --link: #8cc3f0; --chip: #1e242d;
-  --ok: #6fd3a5; --ok-soft: #15302a; --wait: #f2c27a; --wait-soft: #33281a;
-  --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px rgba(0,0,0,0.25);
-  color-scheme: dark;
+  --bg: #111416; --panel: #161a1d; --fg: #e8eaeb; --muted: #a9b1b6; --faint: #737d84; --rule: #262c30;
+  --accent: #f07a8a; --accent-soft: #3a1d22; --link: #e8eaeb; --chip: #1d2226; --sheet: #1a1f22;
+  --ok: #6fd3a5; --ok-soft: #15302a; --wait: #f2c27a; --wait-soft: #33281a; color-scheme: dark;
 }
-
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-body);
-  font-size: 15.5px;
-  line-height: 1.62;
-}
-a { color: var(--link); text-decoration: none; }
-a:hover { text-decoration: underline; text-underline-offset: 3px; }
-:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 3px; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: var(--link); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.mono { font-family: var(--font-mono); }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 
-.shell {
-  max-width: 1160px;
-  margin: 0 auto;
-  padding-block: 36px 64px;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-  display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
-  gap: 56px;
-}
-
-/* ---------- Profile rail ---------- */
-.rail { position: sticky; top: calc(24px + env(safe-area-inset-top, 0px)); align-self: start; display: grid; gap: 22px; }
-.portrait {
-  position: relative;
-  width: 148px; aspect-ratio: 1; max-width: 100%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 25%, var(--panel), var(--accent-soft));
-  border: 1px solid var(--rule);
-  display: grid; place-items: center; overflow: hidden;
-  font-family: var(--font-display); font-size: 3.4rem; color: var(--accent);
-}
-.portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.name {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 2.6rem;
-  line-height: 1.02;
-  letter-spacing: -0.01em;
-  margin: 0;
-  text-wrap: balance;
-}
-.role { margin: 6px 0 0; color: var(--muted); font-size: 0.95rem; }
-.email { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); word-break: break-word; }
-.profiles { display: flex; flex-wrap: wrap; gap: 8px; }
-.profiles a {
-  font-size: 0.82rem; font-weight: 600;
-  padding: 5px 11px; border-radius: 999px;
-  background: var(--chip); color: var(--fg); border: 1px solid var(--rule);
-}
-.profiles a:hover { text-decoration: none; border-color: var(--link); color: var(--link); }
-.toc { display: grid; gap: 2px; border-top: 1px solid var(--rule); padding-top: 14px; }
-.toc a {
-  color: var(--muted); font-size: 0.9rem; padding: 4px 10px; border-radius: 6px;
-  display: flex; justify-content: space-between; gap: 10px;
-}
-.toc a span { font-family: var(--font-mono); font-size: 0.74rem; color: var(--faint); }
-.toc a:hover, .toc a.active { background: var(--panel); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); }
-.theme-btn {
-  justify-self: start;
-  font: 600 0.8rem var(--font-body);
-  color: var(--muted); background: transparent;
-  border: 1px solid var(--rule); border-radius: 999px; padding: 6px 12px; cursor: pointer;
-}
+/* Top bar */
+.topbar { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 56px; }
+.brand { font-family: var(--font-display); font-size: 1.15rem; text-decoration: none; color: var(--fg); white-space: nowrap; }
+.nav { display: flex; align-items: center; gap: 22px; font-size: 0.86rem; overflow-x: auto; scrollbar-width: none; }
+.nav::-webkit-scrollbar { display: none; }
+.nav a { color: var(--muted); text-decoration: none; padding: 17px 0 15px; border-bottom: 2px solid transparent; white-space: nowrap; }
+.nav a:hover { color: var(--fg); }
+.nav a.active { color: var(--fg); border-bottom-color: var(--accent); }
+.theme-btn { font: 500 0.8rem var(--font-body); color: var(--muted); background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 4px 10px; cursor: pointer; white-space: nowrap; }
 .theme-btn:hover { color: var(--fg); border-color: var(--faint); }
 
-/* ---------- Main column ---------- */
-main { min-width: 0; display: grid; gap: 64px; }
-.hero { display: grid; gap: 18px; }
-.trace-wrap { position: relative; height: 72px; border-bottom: 1px solid var(--rule); }
-#trace { width: 100%; height: 72px; display: block; }
-.trace-label {
-  position: absolute; right: 0; top: 0;
-  font-family: var(--font-mono); font-size: 0.7rem; color: var(--faint); letter-spacing: 0.06em;
-  background: var(--bg); padding: 0 0 0 6px;
-}
-.lede {
-  font-family: var(--font-display);
-  font-size: 2.15rem; line-height: 1.16; margin: 0; max-width: 28ch;
-  text-wrap: balance;
-}
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 56px; align-items: center; padding: 88px 0 56px; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 0 0 18px; }
+.lede { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.1rem, 4.6vw, 3.1rem); line-height: 1.12; letter-spacing: -0.012em; margin: 0 0 26px; text-wrap: balance; }
 .lede em { color: var(--accent); font-style: italic; }
-.hero p { margin: 0; max-width: 66ch; }
-.interests { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; }
-.interests li { list-style: none; font-size: 0.82rem; padding: 4px 10px; border-radius: 6px; background: var(--accent-soft); color: var(--fg); }
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 6px; }
-.stat { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; gap: 4px; }
-.stat b { font-family: var(--font-display); font-weight: 400; font-size: 2.1rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.hero p { color: var(--muted); max-width: 64ch; margin: 0 0 12px; }
+.hero p a { color: var(--fg); }
+.links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 18px 0 0; font-size: 0.9rem; }
+.links a { color: var(--fg); text-decoration-color: var(--faint); }
+.photo { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 2px; filter: saturate(0.92); }
+.interests { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 22px 0 0; }
+.interests li { list-style: none; font-size: 0.78rem; padding: 3px 10px; border: 1px solid var(--rule); border-radius: 999px; color: var(--muted); }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 0 0 24px; }
+.stat { padding: 18px 16px 16px; display: grid; gap: 2px; }
+.stat + .stat { border-left: 1px solid var(--rule); }
+.stat b { font-family: var(--font-display); font-weight: 400; font-size: 2.2rem; line-height: 1; font-variant-numeric: tabular-nums; }
 .stat span { font-size: 0.78rem; color: var(--muted); }
 
-section > h2 {
-  font-family: var(--font-display); font-weight: 400;
-  font-size: 2.1rem; line-height: 1.1; margin: 0 0 6px;
-}
-.kicker { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); font-weight: 700; margin: 0 0 4px; }
-.section-note { color: var(--muted); margin: 0 0 22px; font-size: 0.92rem; }
+/* Sections */
+main { counter-reset: sec; }
+main section { padding: 56px 0 8px; }
+main section > h2 { counter-increment: sec; display: flex; align-items: baseline; gap: 14px; font-family: var(--font-display); font-weight: 400; font-size: 2rem; line-height: 1.1; margin: 0 0 22px; }
+main section > h2::before { content: counter(sec, decimal-leading-zero); font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.08em; }
+main section > h2::after { content: ""; flex: 1; height: 1px; background: var(--rule); transform: translateY(-0.3em); }
+.kicker { display: none; }
+.section-note { color: var(--muted); margin: -8px 0 22px; font-size: 0.9rem; max-width: 70ch; }
+
+/* Selected papers strip */
+.strip { list-style: none; margin: 0; padding: 4px 2px 10px; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(210px, 23%); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.strip::-webkit-scrollbar { display: none; }
+.strip li { scroll-snap-align: start; }
+.card { display: grid; gap: 8px; text-decoration: none; color: var(--fg); }
+.sheet { display: grid; align-content: start; gap: 10px; aspect-ratio: 0.77; padding: 18px 16px; background: var(--sheet); border: 1px solid var(--rule); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 10px 24px -14px rgba(0,0,0,0.25); transition: transform 0.2s ease, box-shadow 0.2s ease; overflow: hidden; }
+.card:hover .sheet { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 16px 30px -14px rgba(0,0,0,0.3); }
+.sheet-rule { height: 3px; width: 34%; background: var(--accent); }
+.sheet-title { font-family: var(--font-display); font-size: 0.86rem; line-height: 1.25; color: var(--fg); display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+.sheet-lines { display: grid; gap: 6px; margin-top: 4px; }
+.sheet-lines i { display: block; height: 4px; background: var(--rule); border-radius: 2px; }
+.sheet-lines i:nth-child(3n) { width: 82%; } .sheet-lines i:nth-child(4n) { width: 64%; }
+.card-venue { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.card-title { font-family: var(--font-display); font-size: 1.05rem; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.card:hover .card-title { color: var(--accent); }
+.card-tag { font-size: 0.75rem; color: var(--accent); }
+.strip-nav { display: flex; justify-content: flex-end; align-items: center; gap: 12px; margin-top: 10px; font-size: 0.75rem; color: var(--muted); }
+.strip-nav button { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--rule); background: var(--bg); color: var(--fg); cursor: pointer; font-size: 0.95rem; }
+.strip-nav button:hover { border-color: var(--accent); color: var(--accent); }
 
 /* News */
-.news { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--rule); display: grid; gap: 14px; }
-.news li { position: relative; padding-left: 20px; display: grid; grid-template-columns: 82px minmax(0, 1fr); gap: 14px; }
-.news li::before {
-  content: ""; position: absolute; left: -6px; top: 8px; width: 10px; height: 10px; border-radius: 50%;
-  background: var(--bg); border: 2px solid var(--faint);
-}
-.news li.key::before { border-color: var(--accent); background: var(--accent); }
-.news time { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); padding-top: 2px; font-variant-numeric: tabular-nums; }
+.news { list-style: none; margin: 0; padding: 0; display: grid; }
+.news li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 18px; padding: 10px 0; border-top: 1px solid var(--rule); }
+.news li:last-child { border-bottom: 1px solid var(--rule); }
+.news time { font-family: var(--font-mono); font-size: 0.74rem; color: var(--muted); padding-top: 3px; letter-spacing: 0.04em; }
+.news li.key time { color: var(--accent); }
 
-/* Publication filters */
-.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; }
-.filters button {
-  font: 600 0.82rem var(--font-body);
-  padding: 6px 13px; border-radius: 999px; cursor: pointer;
-  background: var(--panel); color: var(--muted); border: 1px solid var(--rule);
-}
-.filters button span { font-family: var(--font-mono); font-weight: 400; margin-left: 6px; color: var(--faint); }
+/* Publications */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+.filters button { font: 500 0.8rem var(--font-body); padding: 5px 12px; border-radius: 999px; cursor: pointer; background: var(--bg); color: var(--muted); border: 1px solid var(--rule); }
+.filters button span { font-family: var(--font-mono); margin-left: 6px; color: var(--faint); }
 .filters button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 .filters button[aria-pressed="true"] span { color: var(--bg); opacity: 0.7; }
-
-.pub-group + .pub-group { margin-top: 30px; }
-.group-title { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; margin: 0 0 12px; }
-.pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-.pub {
-  background: var(--panel); border: 1px solid var(--rule); border-radius: 10px;
-  padding: 16px 18px; display: grid; gap: 4px;
-}
-.pub.first { border-color: color-mix(in srgb, var(--accent) 40%, var(--rule)); }
-.pub-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
-.pub .id { font-family: var(--font-mono); font-size: 0.72rem; color: var(--faint); }
-.badge { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; background: var(--chip); color: var(--muted); }
+.pub-group + .pub-group { margin-top: 34px; }
+.group-title { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 6px; }
+.pubs { list-style: none; margin: 0; padding: 0; display: grid; }
+.pub { padding: 14px 0; border-top: 1px solid var(--rule); display: grid; gap: 3px; }
+.pub-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; order: 9; }
+.pub .id { font-family: var(--font-mono); font-size: 0.7rem; color: var(--faint); }
+.badge { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 1px 7px; border-radius: 3px; background: var(--chip); color: var(--muted); }
 .badge.ok { background: var(--ok-soft); color: var(--ok); }
 .badge.wait { background: var(--wait-soft); color: var(--wait); }
 .badge.hl { background: var(--accent-soft); color: var(--accent); }
-.pub .title { font-weight: 600; line-height: 1.4; font-size: 1rem; }
-.pub .authors { color: var(--muted); font-size: 0.9rem; }
-.pub .authors b { color: var(--fg); font-weight: 700; }
-.pub .venue { font-size: 0.88rem; font-style: italic; }
-.pub .links { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.82rem; margin-top: 2px; font-family: var(--font-mono); word-break: break-all; }
+.pub .title { font-family: var(--font-display); font-size: 1.12rem; line-height: 1.3; }
+.pub.first .title::before { content: "First author · "; font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); vertical-align: 0.12em; }
+.pub .authors { color: var(--muted); font-size: 0.86rem; }
+.pub .authors b { color: var(--fg); font-weight: 600; }
+.pub .venue { font-size: 0.84rem; font-style: italic; color: var(--muted); }
+.pub .links { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.8rem; font-family: var(--font-mono); word-break: break-all; }
 .pub .links .pending { font-family: var(--font-body); color: var(--faint); word-break: normal; }
+.more-btn { margin-top: 14px; font: 500 0.82rem var(--font-body); color: var(--accent); background: none; border: 1px solid var(--accent-soft); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+.more-btn:hover { border-color: var(--accent); }
 
-/* Experience timeline */
-.confs { list-style: none; margin: 0; padding: 0; display: grid; }
-.confs li { display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 20px; padding: 14px 0; border-top: 1px solid var(--rule); }
-.confs li:last-child { border-bottom: 1px solid var(--rule); }
-.confs .when { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); padding-top: 2px; }
-.confs .org { font-weight: 600; }
-.confs .desc { color: var(--muted); font-size: 0.92rem; margin: 2px 0 0; }
-.visitors { margin: 48px 0 0; }
-.visitors img { display: block; max-width: 100%; height: auto; }
+/* Conferences and experience */
+.confs, .timeline { list-style: none; margin: 0; padding: 0; display: grid; }
+.confs li, .timeline li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 24px; padding: 16px 0; border-top: 1px solid var(--rule); }
+.confs li:last-child, .timeline li:last-child { border-bottom: 1px solid var(--rule); }
+.confs .when, .timeline .when { order: 2; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-top: 4px; white-space: nowrap; text-align: right; }
+.confs .org, .timeline .org { font-family: var(--font-display); font-size: 1.12rem; line-height: 1.3; }
+.confs .desc, .timeline .desc { color: var(--muted); font-size: 0.88rem; margin: 3px 0 0; }
 .photos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
 .photos a { display: block; line-height: 0; }
-.photos img { height: 160px; width: auto; max-width: 100%; object-fit: cover; border-radius: 8px; border: 1px solid var(--rule); }
+.photos img { height: 150px; width: auto; max-width: 100%; object-fit: cover; border: 1px solid var(--rule); }
 .award { color: var(--accent); font-weight: 600; }
-.timeline { list-style: none; margin: 0; padding: 0; display: grid; }
-.timeline li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 20px; padding: 14px 0; border-top: 1px solid var(--rule); }
-.timeline li:last-child { border-bottom: 1px solid var(--rule); }
-.timeline .when { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); padding-top: 2px; font-variant-numeric: tabular-nums; }
-.timeline .org { font-weight: 600; }
-.timeline .desc { color: var(--muted); font-size: 0.92rem; margin: 2px 0 0; }
 
-.edu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.edu div { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 16px; display: grid; gap: 6px; align-content: start; }
-.edu b { font-weight: 600; line-height: 1.35; }
-.edu em { font-style: normal; font-size: 0.9rem; color: var(--fg); }
-.edu span { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+/* Education and recognition */
+.edu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.edu div { padding: 18px 18px 18px 0; display: grid; gap: 6px; align-content: start; }
+.edu div + div { border-left: 1px solid var(--rule); padding-left: 18px; }
+.edu b { font-family: var(--font-display); font-weight: 400; font-size: 1.12rem; line-height: 1.3; }
+.edu em { font-style: normal; font-size: 0.86rem; color: var(--muted); }
+.edu span { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; }
+.honors { margin: 0; padding: 0; list-style: none; display: grid; }
+.honors li { padding: 12px 0; border-top: 1px solid var(--rule); }
+.honors li:last-child { border-bottom: 1px solid var(--rule); }
+.honors b { font-weight: 600; }
 
-.honors { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
-.honors li { padding-left: 22px; position: relative; }
-.honors li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 12px; height: 2px; background: var(--accent); }
+/* Contact and footer */
+.contact { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end; padding: 64px 0 28px; }
+.contact h2 { font-family: var(--font-display); font-weight: 400; font-size: 2rem; margin: 0 0 8px; }
+.contact p { margin: 0; color: var(--muted); }
+.contact .mono { font-size: 0.82rem; }
+.visitors { margin: 8px 0 0; }
+.visitors img { display: block; max-width: 100%; height: auto; }
+footer { color: var(--faint); font-size: 0.78rem; border-top: 1px solid var(--rule); padding: 18px 0 40px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+footer a { color: var(--muted); }
 
-footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--rule); padding-top: 18px; }
-
-@media (max-width: 920px) {
-  .shell { grid-template-columns: 1fr; gap: 36px; padding-block: 24px 48px; }
-  .rail { position: static; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 16px 20px; }
-  .portrait { width: 104px; font-size: 2.4rem; }
-  .rail-id { min-width: 0; }
-  .name { font-size: 2.1rem; }
-  .rail > .email, .rail > .profiles, .rail > .theme-btn { grid-column: 1 / -1; }
-  .toc { display: none; }
-  .edu { grid-template-columns: 1fr; }
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 28px; padding: 48px 0 36px; }
+  .photo { width: 132px; order: -1; }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat:nth-child(3) { border-left: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--rule); }
+  .strip { grid-auto-columns: minmax(200px, 62%); }
+  .edu { grid-template-columns: 1fr; }
+  .edu div + div { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); }
+  .nav a:not(.keep) { display: none; }
 }
 @media (max-width: 560px) {
-  .confs li { grid-template-columns: 1fr; gap: 2px; }
-  .lede { font-size: 1.7rem; }
   .news li { grid-template-columns: 1fr; gap: 0; }
-  .timeline li { grid-template-columns: 1fr; gap: 2px; }
+  .confs li, .timeline li { grid-template-columns: 1fr; }
+  .confs .when, .timeline .when { order: 0; text-align: left; padding-top: 0; }
+  .contact { grid-template-columns: 1fr; }
+  .nav a.keep { display: none; }
+  .brand { font-size: 1.05rem; overflow: hidden; text-overflow: ellipsis; }
+  main section > h2 { font-size: 1.7rem; }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .sheet { transition: none; } }
 </style>
 </head>
 <body>
-<div class="shell">
-
-  <aside class="rail" aria-label="Profile">
-    <div class="portrait"><img src="images/profile.jpg" alt="Soham Biren Katlariwala" onerror="this.remove()"><span aria-hidden="true">SK</span></div>
-    <div class="rail-id">
-      <h1 class="name">Soham Biren Katlariwala</h1>
-      <p class="role">Final-year student, IIT Madras · Research intern, MIT Critical Data</p>
-    </div>
-    <span class="email">sohambirenkatlariwala at gmail dot com<br>+91 9099306962</span>
-    <nav class="profiles" aria-label="Profiles">
-      <a href="Soham_Katlariwala_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
-      <a href="Soham_Katlariwala_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
-      <a href="https://scholar.google.com/citations?user=znR2Im0AAAAJ&amp;hl=en" target="_blank" rel="noopener">Scholar</a>
-      <a href="https://orcid.org/0009-0008-1178-6543" target="_blank" rel="noopener">ORCID</a>
-      <a href="https://openreview.net/profile?id=~Soham_Biren_Katlariwala1" target="_blank" rel="noopener">OpenReview</a>
-      <a href="https://github.com/SohamBirenKatlariwala" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/soham-katlariwala/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://www.kaggle.com/sohamkatlariwala" target="_blank" rel="noopener">Kaggle</a>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top">Soham Biren Katlariwala</a>
+    <nav class="nav" aria-label="Sections">
+      <a class="keep" href="#papers">Papers</a>
+      <a href="#news">News</a>
+      <a class="keep" href="#publications">Publications</a>
+      <a href="#conferences">Conferences</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#recognition">Recognition</a>
+      <button class="theme-btn" id="theme-toggle" type="button">Dark</button>
     </nav>
-    <nav class="toc" aria-label="Sections">
-      <a href="#about">About <span>01</span></a>
-      <a href="#news">News <span>02</span></a>
-      <a href="#publications">Publications <span>03</span></a>
-      <a href="#conferences">Conferences <span>04</span></a>
-      <a href="#experience">Experience <span>05</span></a>
-      <a href="#education">Education <span>06</span></a>
-      <a href="#recognition">Recognition <span>07</span></a>
-    </nav>
-    <button class="theme-btn" id="theme-toggle" type="button">Switch theme</button>
-  </aside>
+  </div>
+</header>
 
-  <main>
-
-    <section class="hero" id="about">
-      <div class="trace-wrap" aria-hidden="true">
-        <canvas id="trace"></canvas>
-        <span class="trace-label">LEAD II · 25 mm/s</span>
-      </div>
-      <p class="lede">Building clinical AI that stays <em>accurate, calibrated and fair</em> when it moves between hospitals.</p>
+<div class="wrap" id="top">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Soham Biren Katlariwala</p>
+      <h1 class="lede">Building clinical AI that stays <em>accurate, calibrated and fair</em> when it moves between hospitals.</h1>
       <p>I'm a final-year student at the Indian Institute of Technology (IIT) Madras (BS in Data Science and Applications) and at Gujarat Technological University (B.E. Honours in Computer Engineering), a Health Science student at University of the People, and a research intern with <a href="https://criticaldata.mit.edu/" target="_blank" rel="noopener">MIT Critical Data</a> at the MIT Laboratory for Computational Physiology.</p>
       <p>My work spans cardiology and stroke risk prediction, neuroimaging and EEG, and diagnostic-accuracy meta-analysis. Recent projects examine referral bias across catheterization laboratories, fairness in stroke risk models, and graph neural networks for pre-operative fMRI. This work has been accepted at AHA Scientific Sessions, ASH, TCT, ACG, SVIN and CNS, with papers in IEEE and Springer proceedings. I'm applying for thesis-based graduate programmes in clinical AI and medical imaging for Fall 2027.</p>
+      <nav class="links" aria-label="Profiles">
+        <a href="Soham_Katlariwala_CV.pdf" target="_blank" rel="noopener">CV</a>
+        <a href="Soham_Katlariwala_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <a href="https://scholar.google.com/citations?user=znR2Im0AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://orcid.org/0009-0008-1178-6543" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://openreview.net/profile?id=~Soham_Biren_Katlariwala1" target="_blank" rel="noopener">OpenReview</a>
+        <a href="https://github.com/SohamBirenKatlariwala" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/soham-katlariwala/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.kaggle.com/sohamkatlariwala" target="_blank" rel="noopener">Kaggle</a>
+      </nav>
       <ul class="interests" aria-label="Research interests">
         <li>Clinical AI</li><li>Generalizability &amp; fairness</li><li>Neuroimaging &amp; EEG</li><li>Cardiology &amp; stroke</li><li>Meta-analysis</li>
       </ul>
-      <div class="stats" aria-label="Research output">
+    </div>
+    <img class="photo" src="images/profile.jpg" alt="Soham Biren Katlariwala">
+  </div>
+  <div class="stats" aria-label="Research output">
         <div class="stat"><b>8</b><span>published papers</span></div>
         <div class="stat"><b>12</b><span>accepted papers (in press)</span></div>
         <div class="stat"><b>19</b><span>accepted conference submissions</span></div>
         <div class="stat"><b>16</b><span>first- or sole-author outputs</span></div>
+      </div>
+
+  <main>
+    <section id="papers" aria-labelledby="papers-h">
+      <h2 id="papers-h">Selected papers</h2>
+      <div class="strip-wrap">
+      <ol class="strip" id="strip">
+        <li><a class="card" href="#publications">
+          <span class="sheet" aria-hidden="true"><span class="sheet-rule"></span><span class="sheet-title">Does shift-aware conformal correction help? An audit-gated study on cross-site breast ultrasound</span><span class="sheet-lines"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+          <span class="card-venue">IEEE BIBE · 2026</span>
+          <span class="card-title">Does shift-aware conformal correction help? An audit-gated study on cross-site breast ultrasound</span>
+          <span class="card-tag">First author</span>
+        </a></li>
+        <li><a class="card" href="https://doi.org/10.1016/j.jacc.2026.09.1168" target="_blank" rel="noopener">
+          <span class="sheet" aria-hidden="true"><span class="sheet-rule"></span><span class="sheet-title">Institutional referral threshold bias limits generalizability of cardiac AI across 5 international catheterization laboratories</span><span class="sheet-lines"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+          <span class="card-venue">JACC · TCT 2026</span>
+          <span class="card-title">Institutional referral threshold bias limits generalizability of cardiac AI across 5 international catheterization laboratories</span>
+          <span class="card-tag">First author</span>
+        </a></li>
+        <li><a class="card" href="https://doi.org/10.64898/2026.11.01.26367003" target="_blank" rel="noopener">
+          <span class="sheet" aria-hidden="true"><span class="sheet-rule"></span><span class="sheet-title">Questioning the benchmarks: hidden circularity in AQ-10 autism screening datasets</span><span class="sheet-lines"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+          <span class="card-venue">medRxiv · 2026</span>
+          <span class="card-title">Questioning the benchmarks: hidden circularity in AQ-10 autism screening datasets</span>
+          <span class="card-tag">First author</span>
+        </a></li>
+        <li><a class="card" href="#publications">
+          <span class="sheet" aria-hidden="true"><span class="sheet-rule"></span><span class="sheet-title">Script gap in the judge: script-induced bias in LLM-generated relevance judgments for Indic retrieval evaluation</span><span class="sheet-lines"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+          <span class="card-venue">FIRE · 2026</span>
+          <span class="card-title">Script gap in the judge: script-induced bias in LLM-generated relevance judgments for Indic retrieval evaluation</span>
+          <span class="card-tag">First author</span>
+        </a></li>
+        <li><a class="card" href="#publications">
+          <span class="sheet" aria-hidden="true"><span class="sheet-rule"></span><span class="sheet-title">SHAP-guided iterative feature pruning (SIFP): stable gene selection for breast cancer subtype classification</span><span class="sheet-lines"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+          <span class="card-venue">Springer LNNS · 2026</span>
+          <span class="card-title">SHAP-guided iterative feature pruning (SIFP): stable gene selection for breast cancer subtype classification</span>
+          <span class="card-tag">First author</span>
+        </a></li>
+        <li><a class="card" href="https://doi.org/10.1109/ICEARS64219.2025.10941310" target="_blank" rel="noopener">
+          <span class="sheet" aria-hidden="true"><span class="sheet-rule"></span><span class="sheet-title">TriBoost and beyond: advanced machine learning approaches for diabetes risk prediction</span><span class="sheet-lines"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+          <span class="card-venue">IEEE ICEARS · 2025</span>
+          <span class="card-title">TriBoost and beyond: advanced machine learning approaches for diabetes risk prediction</span>
+          <span class="card-tag">First author · most cited</span>
+        </a></li>
+      </ol>
+      <div class="strip-nav"><button type="button" id="prev" aria-label="Previous papers">&larr;</button><span id="strip-pos" class="mono">1 / 6</span><button type="button" id="next" aria-label="Next papers">&rarr;</button></div>
       </div>
     </section>
 
@@ -314,10 +301,10 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
       </ol>
     </section>
 
-    <section id="publications" aria-labelledby="pubs-h">
+<section id="publications" aria-labelledby="pubs-h">
       <p class="kicker">Research</p>
       <h2 id="pubs-h">Publications</h2>
-      <p class="section-note">My name is in bold. A red outline marks work where I am first author. Conference papers and presentations come after the journal articles, followed by preprints and datasets. Full list on <a href="https://scholar.google.com/citations?user=znR2Im0AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
+      <p class="section-note">My name is in bold. First-author work is labelled in red. Conference papers and presentations come after the journal articles, followed by preprints and datasets. Full list on <a href="https://scholar.google.com/citations?user=znR2Im0AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
 
       <div class="filters" role="group" aria-label="Filter publications">
         <button type="button" data-filter="all" aria-pressed="true">All<span id="n-all"></span></button>
@@ -620,7 +607,7 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
       </div>
     </section>
 
-    <section id="conferences" aria-labelledby="conf-h">
+<section id="conferences" aria-labelledby="conf-h">
       <p class="kicker">Presentations</p>
       <h2 id="conf-h">Conferences</h2>
       <p class="section-note">19 accepted conference submissions, with the journal supplement each meeting publishes in.</p>
@@ -637,7 +624,7 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
       </ul>
     </section>
 
-    <section id="experience" aria-labelledby="exp-h">
+<section id="experience" aria-labelledby="exp-h">
       <p class="kicker">Path</p>
       <h2 id="exp-h">Research experience</h2>
       <p class="section-note">Most recent first.</p>
@@ -650,7 +637,7 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
       </ol>
     </section>
 
-    <section id="education" aria-labelledby="edu-h">
+<section id="education" aria-labelledby="edu-h">
       <p class="kicker">Study</p>
       <h2 id="edu-h">Education</h2>
       <p class="section-note">Three concurrent undergraduate degrees.</p>
@@ -661,7 +648,7 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
       </div>
     </section>
 
-    <section id="recognition" aria-labelledby="rec-h">
+<section id="recognition" aria-labelledby="rec-h">
       <p class="kicker">Recognition</p>
       <h2 id="rec-h">Honours and recognition</h2>
       <ul class="honors">
@@ -669,40 +656,37 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
         <li><b>Oral presentation</b> (first author), IC-AICSE 2026, technically supported by IEEE Nepal Section; full paper under review.</li>
       </ul>
     </section>
+  </main>
 
-    <div class="visitors" aria-label="Visitors by country">
+  <div class="contact" id="contact">
+    <div>
+      <h2>Contact</h2>
+      <p>Open to graduate research positions in clinical AI and medical imaging for Fall 2027.</p>
+    </div>
+    <p class="mono">sohambirenkatlariwala at gmail dot com<br>+91 9099306962</p>
+  </div>
+  <div class="visitors" aria-label="Visitors by country">
       <p class="kicker">Visitors</p>
       <a href="https://info.flagcounter.com/PfLj" target="_blank" rel="noopener"><img id="fc" alt="Visitors by country" data-light="https://s05.flagcounter.com/count2/PfLj/bg_F6F7F9/txt_5B6573/border_F6F7F9/columns_8/maxflags_16/viewers_3/labels_0/pageviews_0/flags_0/percent_0/" data-dark="https://s05.flagcounter.com/count2/PfLj/bg_0F1217/txt_A2ABB8/border_0F1217/columns_8/maxflags_16/viewers_3/labels_0/pageviews_0/flags_0/percent_0/" width="624" height="47"></a>
     </div>
-    <footer>© 2026 Soham Biren Katlariwala. Layout inspired by <a href="https://github.com/jonbarron/website" target="_blank" rel="noopener">Jon Barron's template</a>.</footer>
-  </main>
+  <footer><span>© 2026 Soham Biren Katlariwala</span></footer>
 </div>
-
 <script>
 (function () {
   var root = document.documentElement;
-
-  /* Theme toggle; remembers the choice when storage is available. */
   var btn = document.getElementById('theme-toggle');
-  function isDark() {
-    var t = root.getAttribute('data-theme');
-    if (t) return t === 'dark';
-    return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-  }
-  function label() { btn.textContent = isDark() ? 'Light theme' : 'Dark theme'; }
+  function isDark() { var t = root.getAttribute('data-theme'); if (t) return t === 'dark'; return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+  function label() { btn.textContent = isDark() ? 'Light' : 'Dark'; }
   try { var saved = localStorage.getItem('sk-theme'); if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved); } catch (e) {}
   label();
+  btn.addEventListener('click', function () { var next = isDark() ? 'light' : 'dark'; root.setAttribute('data-theme', next); try { localStorage.setItem('sk-theme', next); } catch (e) {} label(); });
 
-  /* Visitor counter: match the light or dark theme */
   var fc = document.getElementById('fc');
-  function setFc() {
-    var t = document.documentElement.dataset.theme;
-    var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var src = dark ? fc.dataset.dark : fc.dataset.light;
-    if (fc.getAttribute('src') !== src) fc.src = src;
+  if (fc) {
+    var setFc = function () { var src = isDark() ? fc.dataset.dark : fc.dataset.light; if (fc.getAttribute('src') !== src) fc.src = src; };
+    setFc();
+    new MutationObserver(setFc).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
   }
-  setFc();
-  new MutationObserver(setFc).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
   /* Publication filters */
   var buttons = document.querySelectorAll('.filters button');
@@ -719,66 +703,40 @@ footer { color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--ru
     });
   });
 
-  /* Highlight the current section in the rail */
-  var links = document.querySelectorAll('.toc a');
+  /* Long lists: show the first few, then a "Show all" button */
+  document.querySelectorAll('.pubs').forEach(function (list) {
+    var items = list.querySelectorAll(':scope > li');
+    var keep = 6;
+    if (items.length <= keep + 2) return;
+    for (var i = keep; i < items.length; i++) items[i].hidden = true;
+    var more = document.createElement('button');
+    more.type = 'button'; more.className = 'more-btn';
+    more.textContent = 'Show all ' + items.length + ' \u2193';
+    more.addEventListener('click', function () { items.forEach(function (it) { it.hidden = false; }); more.remove(); });
+    list.after(more);
+  });
+
+  /* Selected papers strip */
+  var strip = document.getElementById('strip');
+  var pos = document.getElementById('strip-pos');
+  var cards = strip.querySelectorAll('li');
+  function step() { return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : strip.clientWidth; }
+  function update() { var i = Math.round(strip.scrollLeft / step()); pos.textContent = Math.min(i + 1, cards.length) + ' / ' + cards.length; }
+  document.getElementById('prev').addEventListener('click', function () { strip.scrollBy({ left: -step(), behavior: 'smooth' }); });
+  document.getElementById('next').addEventListener('click', function () { strip.scrollBy({ left: step(), behavior: 'smooth' }); });
+  strip.addEventListener('scroll', function () { window.requestAnimationFrame(update); });
+  update();
+
+  /* Highlight the current section in the top bar */
+  var links = document.querySelectorAll('.nav a');
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); });
-        }
+        if (en.isIntersecting) links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); });
       });
-    }, { rootMargin: '-35% 0px -60% 0px' });
-    document.querySelectorAll('main section[id]').forEach(function (s) { obs.observe(s); });
+    }, { rootMargin: '-30% 0px -65% 0px' });
+    document.querySelectorAll('main section[id]').forEach(function (sec) { obs.observe(sec); });
   }
-
-  /* Signal trace: a PQRST-shaped waveform scrolling across ECG paper. */
-  var cv = document.getElementById('trace');
-  var ctx = cv.getContext('2d');
-  var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  var W = 0, H = 72, x0 = 0;
-  function beat(t) {
-    function g(c, w, a) { return a * Math.exp(-Math.pow((t - c) / w, 2)); }
-    return g(0.18, 0.035, 0.12) - g(0.355, 0.012, 0.14) + g(0.38, 0.012, 1.0) - g(0.405, 0.014, 0.28) + g(0.62, 0.06, 0.26);
-  }
-  function resize() {
-    var dpr = window.devicePixelRatio || 1;
-    W = cv.clientWidth;
-    cv.width = Math.max(1, Math.round(W * dpr)); cv.height = Math.round(H * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  function draw() {
-    var cs = getComputedStyle(root);
-    var line = cs.getPropertyValue('--accent').trim() || '#b3263e';
-    var grid = cs.getPropertyValue('--rule').trim() || '#e2e5ea';
-    var period = 190, base = H * 0.64, amp = H * 0.52;
-    ctx.clearRect(0, 0, W, H);
-    ctx.strokeStyle = grid; ctx.lineWidth = 1;
-    for (var i = 0, gx = 0; gx < W; gx += 19, i++) {
-      ctx.globalAlpha = i % 5 === 0 ? 0.9 : 0.35;
-      ctx.beginPath(); ctx.moveTo(gx + 0.5, 0); ctx.lineTo(gx + 0.5, H); ctx.stroke();
-    }
-    ctx.globalAlpha = 1;
-    ctx.strokeStyle = line; ctx.lineWidth = 1.8; ctx.lineJoin = 'round';
-    ctx.beginPath();
-    for (var x = 0; x <= W; x++) {
-      var t = ((((x + x0) % period) + period) % period) / period;
-      var y = base - beat(t) * amp;
-      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-  }
-  function loop() { x0 += 1.1; draw(); requestAnimationFrame(loop); }
-  resize(); draw();
-  window.addEventListener('resize', function () { resize(); draw(); });
-  if (!reduce) requestAnimationFrame(loop);
-
-  btn.addEventListener('click', function () {
-    var next = isDark() ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('sk-theme', next); } catch (e) {}
-    label(); draw();
-  });
 })();
 </script>
 </body>
