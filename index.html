@@ -156,10 +156,10 @@ main section > h2::after { content: ""; flex: 1; height: 1px; background: var(--
 .honors b { font-weight: 600; }
 
 /* Contact and footer */
-.contact { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end; padding: 64px 0 28px; }
+.contact { display: grid; gap: 16px; padding: 64px 0 28px; }
 .contact h2 { font-family: var(--font-display); font-weight: 400; font-size: 2rem; margin: 0 0 8px; }
 .contact p { margin: 0; color: var(--muted); }
-.contact .mono { font-size: 0.82rem; }
+.contact .mono { font-size: 0.82rem; overflow-wrap: anywhere; line-height: 1.8; }
 .visitors { margin: 8px 0 0; }
 .visitors img { display: block; max-width: 100%; height: auto; }
 footer { color: var(--faint); font-size: 0.78rem; border-top: 1px solid var(--rule); padding: 18px 0 40px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
