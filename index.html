@@ -58,6 +58,8 @@ a:hover { text-decoration-color: var(--accent); }
 .lede em { color: var(--accent); font-style: italic; }
 .hero p { color: var(--muted); max-width: 64ch; margin: 0 0 12px; }
 .hero p a { color: var(--fg); }
+.hero p.focus { color: var(--fg); border-left: 2px solid var(--accent); padding: 2px 0 2px 14px; margin: 18px 0 14px; }
+.hero p.focus b { font-family: var(--font-mono, monospace); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 4px; font-weight: 500; }
 .links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 18px 0 0; font-size: 0.9rem; }
 .links a { color: var(--fg); text-decoration-color: var(--faint); }
 .photo { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 2px; filter: saturate(0.92); }
@@ -212,6 +214,7 @@ footer a { color: var(--muted); }
       <h1 class="lede">Building clinical AI that stays <em>accurate, calibrated and fair</em> when it moves between hospitals.</h1>
       <p>I'm a final-year student at the Indian Institute of Technology (IIT) Madras (BS in Data Science and Applications) and at Gujarat Technological University (B.E. Honours in Computer Engineering), a Health Science student at University of the People, and a research intern with <a href="https://criticaldata.mit.edu/" target="_blank" rel="noopener">MIT Critical Data</a> at the MIT Laboratory for Computational Physiology.</p>
       <p>My work spans cardiology and stroke risk prediction, neuroimaging and EEG, and diagnostic-accuracy meta-analysis. Recent projects examine referral bias across catheterization laboratories, fairness in stroke risk models, and graph neural networks for pre-operative fMRI. This work has been accepted at AHA Scientific Sessions, ASH, TCT, ACG, SVIN and CNS, with papers in IEEE and Springer proceedings. I'm applying for thesis-based graduate programmes in clinical AI and medical imaging for Fall 2027.</p>
+      <p class="focus"><b>Research focus</b>Uncertainty-aware clinical machine learning: models that report how confident they are, and keep that guarantee when data shift between hospitals. This includes conformal prediction for shift-aware model audits (IEEE BIBE 2026), targeted deferral in differential diagnosis (ICRPSET 2026), actionable recourse (IEEE WIECON-ECE 2026) and fatigue reliability (NUMSTAT 2026), and Gaussian-process and Bayesian uncertainty (ICMIB 2026, IEEE ICMLANT 2026, IEEE IECS 2026).</p>
       <nav class="links" aria-label="Profiles">
         <a href="Soham_Katlariwala_CV.pdf" target="_blank" rel="noopener">CV</a>
         <a href="Soham_Katlariwala_Resume.pdf" target="_blank" rel="noopener">Resume</a>
@@ -223,7 +226,7 @@ footer a { color: var(--muted); }
         <a href="https://www.kaggle.com/sohamkatlariwala" target="_blank" rel="noopener">Kaggle</a>
       </nav>
       <ul class="interests" aria-label="Research interests">
-        <li>Clinical AI</li><li>Generalizability &amp; fairness</li><li>Neuroimaging &amp; EEG</li><li>Cardiology &amp; stroke</li><li>Meta-analysis</li>
+        <li>Uncertainty &amp; conformal prediction</li><li>Clinical AI</li><li>Generalizability &amp; fairness</li><li>Neuroimaging &amp; EEG</li><li>Cardiology &amp; stroke</li><li>Meta-analysis</li>
       </ul>
     </div>
     <img class="photo" src="images/profile.jpg" alt="Soham Biren Katlariwala">
