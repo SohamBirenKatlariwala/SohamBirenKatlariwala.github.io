@@ -5,6 +5,50 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Soham Biren Katlariwala</title>
 <meta name="description" content="Soham Biren Katlariwala: clinical machine learning, cardiology and stroke AI, neuroimaging and EEG, evidence synthesis.">
+<link rel="canonical" href="https://sohambirenkatlariwala.github.io/">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Soham Biren Katlariwala">
+<meta property="og:title" content="Soham Biren Katlariwala | Uncertainty-aware clinical AI">
+<meta property="og:description" content="Clinical machine learning that reports how confident it is and stays reliable across hospitals: conformal prediction, calibration and Bayesian methods.">
+<meta property="og:url" content="https://sohambirenkatlariwala.github.io/">
+<meta property="og:image" content="https://sohambirenkatlariwala.github.io/images/profile.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:image:alt" content="Portrait of Soham Biren Katlariwala">
+<meta property="profile:first_name" content="Soham">
+<meta property="profile:last_name" content="Katlariwala">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Soham Biren Katlariwala | Uncertainty-aware clinical AI">
+<meta name="twitter:description" content="Clinical machine learning that reports how confident it is and stays reliable across hospitals.">
+<meta name="twitter:image" content="https://sohambirenkatlariwala.github.io/images/profile.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Soham Biren Katlariwala",
+  "givenName": "Soham",
+  "familyName": "Katlariwala",
+  "url": "https://sohambirenkatlariwala.github.io/",
+  "image": "https://sohambirenkatlariwala.github.io/images/profile.jpg",
+  "description": "Researcher in uncertainty-aware clinical machine learning: conformal prediction, calibration and Bayesian methods for models that stay reliable across hospitals.",
+  "knowsAbout": [
+    "Clinical machine learning",
+    "Conformal prediction",
+    "Uncertainty quantification",
+    "Gaussian processes",
+    "Medical imaging",
+    "Meta-analysis"
+  ],
+  "sameAs": [
+    "https://scholar.google.com/citations?user=znR2Im0AAAAJ",
+    "https://orcid.org/0009-0008-1178-6543",
+    "https://openreview.net/profile?id=~Soham_Biren_Katlariwala1",
+    "https://github.com/SohamBirenKatlariwala",
+    "https://www.linkedin.com/in/soham-katlariwala/",
+    "https://www.kaggle.com/sohamkatlariwala"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -58,6 +102,8 @@ a:hover { text-decoration-color: var(--accent); }
 .lede em { color: var(--accent); font-style: italic; }
 .hero p { color: var(--muted); max-width: 64ch; margin: 0 0 12px; }
 .hero p a { color: var(--fg); }
+.hero p.open { color: var(--fg); font-weight: 500; margin: 14px 0 4px; }
+.hero p.open::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--ok); margin-right: 9px; vertical-align: 1px; }
 .hero p.focus { color: var(--fg); border-left: 2px solid var(--accent); padding: 2px 0 2px 14px; margin: 18px 0 14px; }
 .hero p.focus b { font-family: var(--font-mono, monospace); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 4px; font-weight: 500; }
 .links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 18px 0 0; font-size: 0.9rem; }
@@ -80,25 +126,22 @@ main section > h2::after { content: ""; flex: 1; height: 1px; background: var(--
 .kicker { display: none; }
 .section-note { color: var(--muted); margin: -8px 0 22px; font-size: 0.9rem; max-width: 70ch; }
 
-/* Selected papers strip */
-.strip { list-style: none; margin: 0; padding: 4px 2px 10px; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(210px, 23%); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-.strip::-webkit-scrollbar { display: none; }
-.strip li { scroll-snap-align: start; }
-.card { display: grid; gap: 8px; text-decoration: none; color: var(--fg); }
-.sheet { display: grid; align-content: start; gap: 10px; aspect-ratio: 0.77; padding: 18px 16px; background: var(--sheet); border: 1px solid var(--rule); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 10px 24px -14px rgba(0,0,0,0.25); transition: transform 0.2s ease, box-shadow 0.2s ease; overflow: hidden; }
-.card:hover .sheet { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 16px 30px -14px rgba(0,0,0,0.3); }
-.sheet-rule { height: 3px; width: 34%; background: var(--accent); }
-.sheet-title { font-family: var(--font-display); font-size: 0.86rem; line-height: 1.25; color: var(--fg); display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
-.sheet-lines { display: grid; gap: 6px; margin-top: 4px; }
-.sheet-lines i { display: block; height: 4px; background: var(--rule); border-radius: 2px; }
-.sheet-lines i:nth-child(3n) { width: 82%; } .sheet-lines i:nth-child(4n) { width: 64%; }
-.card-venue { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
-.card-title { font-family: var(--font-display); font-size: 1.05rem; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.card:hover .card-title { color: var(--accent); }
-.card-tag { font-size: 0.75rem; color: var(--accent); }
-.strip-nav { display: flex; justify-content: flex-end; align-items: center; gap: 12px; margin-top: 10px; font-size: 0.75rem; color: var(--muted); }
-.strip-nav button { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--rule); background: var(--bg); color: var(--fg); cursor: pointer; font-size: 0.95rem; }
-.strip-nav button:hover { border-color: var(--accent); color: var(--accent); }
+/* Research themes */
+.themes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.theme { display: grid; align-content: start; gap: 10px; padding: 18px 18px 16px; background: var(--sheet); border: 1px solid var(--rule); border-top: 3px solid var(--accent); }
+.theme .num { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; color: var(--accent); text-transform: uppercase; }
+.theme h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.25rem; line-height: 1.2; margin: 0; }
+.theme p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.theme .venues { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg); line-height: 1.6; }
+
+/* Selected papers grid */
+.picks { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.pick { display: grid; align-content: start; gap: 8px; padding: 18px; background: var(--sheet); border: 1px solid var(--rule); }
+.pick .card-venue { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.pick h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.12rem; line-height: 1.25; margin: 0; }
+.pick p { margin: 0; color: var(--muted); font-size: 0.88rem; }
+.pick .pick-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; margin-top: 4px; font-size: 0.8rem; }
+.pick .card-tag { color: var(--accent); }
 
 /* News */
 .news { list-style: none; margin: 0; padding: 0; display: grid; }
@@ -173,7 +216,7 @@ footer a { color: var(--muted); }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .stat:nth-child(3) { border-left: 0; }
   .stat:nth-child(n+3) { border-top: 1px solid var(--rule); }
-  .strip { grid-auto-columns: minmax(200px, 62%); }
+  .themes, .picks { grid-template-columns: 1fr; }
   .edu { grid-template-columns: 1fr; }
   .edu div + div { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); }
   .nav a:not(.keep) { display: none; }
@@ -195,7 +238,8 @@ footer a { color: var(--muted); }
   <div class="wrap">
     <a class="brand" href="#top">Soham Biren Katlariwala</a>
     <nav class="nav" aria-label="Sections">
-      <a class="keep" href="#papers">Papers</a>
+      <a class="keep" href="#research">Research</a>
+      <a href="#papers">Papers</a>
       <a href="#news">News</a>
       <a class="keep" href="#publications">Publications</a>
       <a href="#conferences">Conferences</a>
@@ -213,8 +257,9 @@ footer a { color: var(--muted); }
       <p class="eyebrow">Soham Biren Katlariwala</p>
       <h1 class="lede">Building clinical AI that stays <em>accurate, calibrated and fair</em> when it moves between hospitals.</h1>
       <p>I'm a final-year student at the Indian Institute of Technology (IIT) Madras (BS in Data Science and Applications) and at Gujarat Technological University (B.E. Honours in Computer Engineering), a Health Science student at University of the People, and a research intern with <a href="https://criticaldata.mit.edu/" target="_blank" rel="noopener">MIT Critical Data</a> at the MIT Laboratory for Computational Physiology.</p>
-      <p>My research asks whether a clinical model can say how sure it is, and stay reliable when the data change. I use conformal prediction, calibration and Bayesian methods to audit models across hospitals, defer uncertain cases to clinicians and give patients reliable recourse. I apply the same questions to cardiology and stroke risk, neuroimaging and EEG, and diagnostic-accuracy meta-analysis, for example referral bias across catheterization laboratories. This work has been accepted at IEEE BIBE, FIRE, AHA Scientific Sessions, TCT, ASH, SVIN and CNS, with papers in IEEE and Springer proceedings. I'm applying for thesis-based graduate programmes in clinical AI and medical imaging for Fall 2027.</p>
+      <p>My research asks whether a clinical model can say how sure it is, and stay reliable when the data change. I use conformal prediction, calibration and Bayesian methods to audit models across hospitals, defer uncertain cases to clinicians and give patients reliable recourse. I apply the same questions to cardiology and stroke risk, neuroimaging and EEG, and diagnostic-accuracy meta-analysis, for example referral bias across catheterization laboratories. This work has been accepted at IEEE BIBE, FIRE, AHA Scientific Sessions, TCT, ASH, SVIN and CNS, with papers in IEEE and Springer proceedings.</p>
       <p class="focus"><b>Research focus</b>Uncertainty-aware clinical machine learning: models that report how confident they are, and keep that guarantee when data shift between hospitals. This includes conformal prediction for shift-aware model audits (IEEE BIBE 2026), targeted deferral in differential diagnosis (ICRPSET 2026), actionable recourse (IEEE WIECON-ECE 2026) and fatigue reliability (NUMSTAT 2026), and Gaussian-process and Bayesian uncertainty (ICMIB 2026, IEEE ICMLANT 2026, IEEE IECS 2026).</p>
+      <p class="open">Seeking thesis-based MSc or PhD positions in clinical AI for Fall 2027. <a href="#contact">Contact me</a>.</p>
       <nav class="links" aria-label="Profiles">
         <a href="Soham_Katlariwala_CV.pdf" target="_blank" rel="noopener">CV</a>
         <a href="Soham_Katlariwala_Resume.pdf" target="_blank" rel="noopener">Resume</a>
@@ -233,55 +278,64 @@ footer a { color: var(--muted); }
   </div>
   <div class="stats" aria-label="Research output">
         <div class="stat"><b>8</b><span>published papers</span></div>
-        <div class="stat"><b>16</b><span>accepted papers (in press)</span></div>
-        <div class="stat"><b>22</b><span>accepted conference submissions</span></div>
-        <div class="stat"><b>19</b><span>first- or sole-author outputs</span></div>
+        <div class="stat"><b>16</b><span>papers in press</span></div>
+        <div class="stat"><b>22</b><span>conference abstracts and presentations</span></div>
+        <div class="stat"><b>19</b><span>first- or sole-author</span></div>
       </div>
 
   <main>
+    <section id="research" aria-labelledby="research-h">
+      <h2 id="research-h">Research themes</h2>
+      <div class="themes">
+        <article class="theme">
+          <span class="num">Theme 1</span>
+          <h3>Uncertainty under hospital shift</h3>
+          <p>Can a clinical model keep its confidence guarantees when it moves to a new hospital? I use conformal prediction to audit models across sites, defer uncertain cases to clinicians and give patients actionable recourse.</p>
+          <span class="venues">IEEE BIBE 2026 · ICRPSET 2026 · IEEE WIECON-ECE 2026</span>
+        </article>
+        <article class="theme">
+          <span class="num">Theme 2</span>
+          <h3>Bayesian and Gaussian-process uncertainty</h3>
+          <p>Probabilistic models that report calibrated uncertainty alongside each prediction, from Green's-function Gaussian processes to Bayesian sparse identification of dynamics and physics-aware ensembles.</p>
+          <span class="venues">ICMIB 2026 · IEEE ICMLANT 2026 · IEEE IECS 2026</span>
+        </article>
+        <article class="theme">
+          <span class="num">Theme 3</span>
+          <h3>Evaluation integrity</h3>
+          <p>Do our benchmarks measure what they claim? Hidden circularity in screening datasets, script-induced bias in LLM relevance judges, and data provenance and ethics in health-AI education.</p>
+          <span class="venues">medRxiv 2026 (AQ-10) · FIRE 2026 · MIT Critical Data</span>
+        </article>
+      </div>
+    </section>
+
     <section id="papers" aria-labelledby="papers-h">
       <h2 id="papers-h">Selected papers</h2>
-      <div class="strip-wrap">
-      <ol class="strip" id="strip">
-        <li><a class="card" href="#publications">
-          <span class="sheet" aria-hidden="true"><span class="sheet-rule"></span><span class="sheet-title">Does shift-aware conformal correction help? An audit-gated study on cross-site breast ultrasound</span><span class="sheet-lines"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+      <ul class="picks">
+        <li class="pick">
           <span class="card-venue">IEEE BIBE · 2026</span>
-          <span class="card-title">Does shift-aware conformal correction help? An audit-gated study on cross-site breast ultrasound</span>
-          <span class="card-tag">First author</span>
-        </a></li>
-        <li><a class="card" href="https://doi.org/10.1016/j.jacc.2026.09.1168" target="_blank" rel="noopener">
-          <span class="sheet" aria-hidden="true"><span class="sheet-rule"></span><span class="sheet-title">Institutional referral threshold bias limits generalizability of cardiac AI across 5 international catheterization laboratories</span><span class="sheet-lines"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+          <h3>Does shift-aware conformal correction help? An audit-gated study on cross-site breast ultrasound</h3>
+          <p>Audits whether conformal prediction sets keep their coverage when a breast-ultrasound model moves between sites, and whether shift-aware correction actually helps.</p>
+          <div class="pick-foot"><span class="card-tag">First author</span><a href="#publications">Full paper accepted (IEEE proceedings forthcoming)</a></div>
+        </li>
+        <li class="pick">
           <span class="card-venue">JACC · TCT 2026</span>
-          <span class="card-title">Institutional referral threshold bias limits generalizability of cardiac AI across 5 international catheterization laboratories</span>
-          <span class="card-tag">First author</span>
-        </a></li>
-        <li><a class="card" href="https://doi.org/10.64898/2026.11.01.26367003" target="_blank" rel="noopener">
-          <span class="sheet" aria-hidden="true"><span class="sheet-rule"></span><span class="sheet-title">Questioning the benchmarks: hidden circularity in AQ-10 autism screening datasets</span><span class="sheet-lines"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+          <h3>Institutional referral threshold bias limits generalizability of cardiac AI across 5 international catheterization laboratories</h3>
+          <p>Shows how differences in each laboratory's referral threshold limit how well cardiac AI transfers across five international sites.</p>
+          <div class="pick-foot"><span class="card-tag">First author</span><a href="https://doi.org/10.1016/j.jacc.2026.09.1168" target="_blank" rel="noopener">DOI ↗</a></div>
+        </li>
+        <li class="pick">
           <span class="card-venue">medRxiv · 2026</span>
-          <span class="card-title">Questioning the benchmarks: hidden circularity in AQ-10 autism screening datasets</span>
-          <span class="card-tag">First author</span>
-        </a></li>
-        <li><a class="card" href="#publications">
-          <span class="sheet" aria-hidden="true"><span class="sheet-rule"></span><span class="sheet-title">Script gap in the judge: script-induced bias in LLM-generated relevance judgments for Indic retrieval evaluation</span><span class="sheet-lines"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+          <h3>Questioning the benchmarks: hidden circularity in AQ-10 autism screening datasets</h3>
+          <p>Identifies hidden circularity in widely used AQ-10 autism screening datasets and what it means for reported model accuracy.</p>
+          <div class="pick-foot"><span class="card-tag">First author</span><a href="https://doi.org/10.64898/2026.11.01.26367003" target="_blank" rel="noopener">Preprint ↗</a></div>
+        </li>
+        <li class="pick">
           <span class="card-venue">FIRE · 2026</span>
-          <span class="card-title">Script gap in the judge: script-induced bias in LLM-generated relevance judgments for Indic retrieval evaluation</span>
-          <span class="card-tag">First author</span>
-        </a></li>
-        <li><a class="card" href="#publications">
-          <span class="sheet" aria-hidden="true"><span class="sheet-rule"></span><span class="sheet-title">SHAP-guided iterative feature pruning (SIFP): stable gene selection for breast cancer subtype classification</span><span class="sheet-lines"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
-          <span class="card-venue">Springer LNNS · 2026</span>
-          <span class="card-title">SHAP-guided iterative feature pruning (SIFP): stable gene selection for breast cancer subtype classification</span>
-          <span class="card-tag">First author</span>
-        </a></li>
-        <li><a class="card" href="https://doi.org/10.1109/ICEARS64219.2025.10941310" target="_blank" rel="noopener">
-          <span class="sheet" aria-hidden="true"><span class="sheet-rule"></span><span class="sheet-title">TriBoost and beyond: advanced machine learning approaches for diabetes risk prediction</span><span class="sheet-lines"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
-          <span class="card-venue">IEEE ICEARS · 2025</span>
-          <span class="card-title">TriBoost and beyond: advanced machine learning approaches for diabetes risk prediction</span>
-          <span class="card-tag">First author · most cited</span>
-        </a></li>
-      </ol>
-      <div class="strip-nav"><button type="button" id="prev" aria-label="Previous papers">&larr;</button><span id="strip-pos" class="mono">1 / 6</span><button type="button" id="next" aria-label="Next papers">&rarr;</button></div>
-      </div>
+          <h3>Script gap in the judge: script-induced bias in LLM-generated relevance judgments for Indic retrieval evaluation</h3>
+          <p>Measures how the script used in a query biases the LLM relevance judgments that are used to evaluate Indic-language search.</p>
+          <div class="pick-foot"><span class="card-tag">First author · 17.3% acceptance</span><a href="#publications">Regular paper accepted</a></div>
+        </li>
+      </ul>
     </section>
 
     <section id="news" aria-labelledby="news-h">
@@ -289,14 +343,18 @@ footer a { color: var(--muted); }
       <h2 id="news-h">News</h2>
       <p class="section-note">Recent presentations, acceptances and milestones.</p>
       <ol class="news">
-        <li><time>Oct 2026</time><span>Our co-authored ACG 2026 poster on AI-assisted esophagogastroduodenoscopy for gastric neoplasm detection was presented by co-author Sabeera Mohammed, who received an Outstanding Poster Presenter award.</span></li>
+        <li class="key"><time>Nov 2026</time><span>Two full papers accepted at IEEE BIBE 2026, including first-author work on shift-aware conformal correction for cross-site breast ultrasound.</span></li>
         <li class="key"><time>Nov 2026</time><span>Moderated poster on trajectory-informed stroke risk prediction at the SVIN 2026 Annual Meeting, Las Vegas.</span></li>
+        <li class="key"><time>Nov 2026</time><span>First-author paper on Green's-function Gaussian processes accepted for oral presentation at ICMIB 2026 (20% acceptance).</span></li>
+        <li class="key"><time>Nov 2026</time><span>First-author paper on Bayesian sparse identification of dynamics accepted at IEEE ICMLANT 2026.</span></li>
+        <li class="key"><time>Nov 2026</time><span>Preprint on hidden circularity in AQ-10 autism screening datasets posted on medRxiv.</span></li>
+        <li><time>Nov 2026</time><span>Co-authored meta-analysis on beta-blockers in heart failure with preserved ejection fraction accepted at the 87th Congress of the Italian Society of Cardiology (SIC 2026), Rome.</span></li>
+        <li class="key"><time>Nov 2026</time><span>Five abstracts (one as first author) at the American Heart Association (AHA) Scientific Sessions 2026, published in <em>Circulation</em>.</span></li>
         <li class="key"><time>Oct 2026</time><span>Work accepted at TCT 2026, San Diego (Oct 31 – Nov 3).</span></li>
         <li class="key"><time>Oct 2026</time><span>Two first-author posters at the Congress of Neurological Surgeons (CNS) 2026 Annual Meeting, Washington, DC.</span></li>
         <li class="key"><time>Oct 2026</time><span>Oral presentation at IC-AICSE 2026, Lalitpur, Nepal, on hidden circularity in AQ-10 autism screening datasets.</span></li>
-        <li class="key"><time>2026</time><span>Work accepted at the American Heart Association (AHA) Scientific Sessions 2026.</span></li>
-        <li class="key"><time>Oct 2026</time><span>Work accepted at the American Society of Hematology (ASH) 2026 Annual Meeting.</span></li>
-        <li><time>Oct 2026</time><span>Work accepted at the American College of Gastroenterology (ACG) 2026 meeting.</span></li>
+        <li><time>Oct 2026</time><span>Work accepted at the American Society of Hematology (ASH) 2026 Annual Meeting.</span></li>
+        <li><time>Oct 2026</time><span>Three co-authored abstracts at the American College of Gastroenterology (ACG) 2026 meeting. Our poster on AI-assisted esophagogastroduodenoscopy was presented by co-author Sabeera Mohammed, who received an Outstanding Poster Presenter award.</span></li>
         <li><time>Oct 2026</time><span>Letter on residual confounding in target trial emulation accepted in <em>The American Journal of Medicine</em>.</span></li>
         <li><time>Aug 2026</time><span>Presented three papers at MetaSphere 2026, IEM Kolkata. Springer proceedings forthcoming.</span></li>
         <li><time>Feb 2026</time><span>Joined MIT Critical Data as a research intern.</span></li>
@@ -720,8 +778,11 @@ footer a { color: var(--muted); }
       <p class="kicker">Recognition</p>
       <h2 id="rec-h">Honours and recognition</h2>
       <ul class="honors">
+        <li><b>Selective acceptance:</b> regular paper (first author), Forum for Information Retrieval Evaluation (FIRE) 2026, 17.3% acceptance rate (9 of 52 regular papers).</li>
+        <li><b>Selective acceptance and oral presentation:</b> first-author paper, ICMIB 2026, 20% acceptance rate (Springer proceedings).</li>
         <li><b>Moderated poster presentation</b> (first author), Society of Vascular and Interventional Neurology (SVIN) 2026 Annual Meeting.</li>
-        <li><b>Oral presentation</b> (first author), IC-AICSE 2026, technically supported by IEEE Nepal Section; full paper under review.</li>
+        <li><b>Oral presentations</b> of two papers (first author on one, corresponding author on both), ICTDsC 2026 (Springer LNNS).</li>
+        <li><b>Oral presentation</b> (first author), IC-AICSE 2026, technically supported by the IEEE Nepal Section.</li>
       </ul>
     </section>
   </main>
@@ -783,17 +844,6 @@ footer a { color: var(--muted); }
     more.addEventListener('click', function () { items.forEach(function (it) { it.hidden = false; }); more.remove(); });
     list.after(more);
   });
-
-  /* Selected papers strip */
-  var strip = document.getElementById('strip');
-  var pos = document.getElementById('strip-pos');
-  var cards = strip.querySelectorAll('li');
-  function step() { return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : strip.clientWidth; }
-  function update() { var i = Math.round(strip.scrollLeft / step()); pos.textContent = Math.min(i + 1, cards.length) + ' / ' + cards.length; }
-  document.getElementById('prev').addEventListener('click', function () { strip.scrollBy({ left: -step(), behavior: 'smooth' }); });
-  document.getElementById('next').addEventListener('click', function () { strip.scrollBy({ left: step(), behavior: 'smooth' }); });
-  strip.addEventListener('scroll', function () { window.requestAnimationFrame(update); });
-  update();
 
   /* Highlight the current section in the top bar */
   var links = document.querySelectorAll('.nav a');
