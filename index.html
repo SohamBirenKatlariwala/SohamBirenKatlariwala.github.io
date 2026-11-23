@@ -232,6 +232,38 @@ footer a { color: var(--muted); }
   main section > h2 { font-size: 1.7rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .sheet { transition: none; } }
+
+/* Conference calendar */
+.cal { border: 1px solid var(--rule); background: var(--sheet); margin: 8px 0 28px; }
+.cal-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--rule); }
+.cal-bar h3 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; }
+.cal-bar button { font: inherit; font-size: 0.8rem; background: var(--panel); color: var(--fg); border: 1px solid var(--rule); padding: 4px 10px; cursor: pointer; }
+.cal-bar button:hover { border-color: var(--accent); }
+.cal-body { display: grid; grid-template-columns: minmax(0, 1fr) 260px; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.cal-dow { font-family: var(--font-mono); font-size: 0.68rem; color: var(--faint); text-transform: uppercase; padding: 6px 6px; border-bottom: 1px solid var(--rule); }
+.cal-day { min-height: 74px; padding: 4px 4px 6px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-size: 0.72rem; overflow: hidden; }
+.cal-day:nth-child(7n+7) { border-right: 0; }
+.cal-day.out { background: var(--bg); color: var(--faint); }
+.cal-day .n { display: inline-block; min-width: 20px; text-align: center; color: var(--muted); }
+.cal-day.today .n { background: var(--accent); color: #fff; border-radius: 10px; }
+.cal-ev { display: block; margin-top: 2px; padding: 1px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-left: 3px solid var(--accent); background: var(--accent-soft); color: var(--fg); }
+.cal-ev.co { border-left-color: var(--wait); background: var(--wait-soft); }
+.cal-list { border-left: 1px solid var(--rule); padding: 10px 12px; font-size: 0.8rem; }
+.cal-list h4 { margin: 0 0 8px; font-size: 0.72rem; font-family: var(--font-mono); text-transform: uppercase; color: var(--faint); font-weight: 400; }
+.cal-list ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.cal-list li { border-left: 3px solid var(--accent); padding-left: 8px; }
+.cal-list li.co { border-left-color: var(--wait); }
+.cal-list time { display: block; font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); }
+.cal-key { display: flex; gap: 14px; flex-wrap: wrap; padding: 8px 12px; border-top: 1px solid var(--rule); font-size: 0.72rem; color: var(--muted); }
+.cal-key span::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 5px; vertical-align: -1px; background: var(--accent-soft); border-left: 3px solid var(--accent); }
+.cal-key span.co::before { background: var(--wait-soft); border-left-color: var(--wait); }
+@media (max-width: 760px) {
+  .cal-body { grid-template-columns: 1fr; }
+  .cal-list { border-left: 0; border-top: 1px solid var(--rule); }
+  .cal-day { min-height: 46px; }
+  .cal-ev { font-size: 0; height: 5px; padding: 0; margin-top: 3px; }
+}
 </style>
 </head>
 <body>
@@ -739,6 +771,18 @@ footer a { color: var(--muted); }
       <p class="kicker">Presentations</p>
       <h2 id="conf-h">Conferences and workshops</h2>
       <p class="section-note">Every meeting where my work has been accepted or presented: 11 upcoming and 18 past conferences, and 2 workshops or programmes.</p>
+      <div class="cal" id="conf-cal" aria-label="Conference calendar">
+        <div class="cal-bar">
+          <button type="button" data-cal="-1" aria-label="Previous month">&larr;</button>
+          <h3 id="cal-title">Calendar</h3>
+          <span><button type="button" data-cal="0">Today</button> <button type="button" data-cal="1" aria-label="Next month">&rarr;</button></span>
+        </div>
+        <div class="cal-body">
+          <div class="cal-grid" id="cal-grid"></div>
+          <div class="cal-list"><h4 id="cal-list-h">This month</h4><ul id="cal-list"></ul></div>
+        </div>
+        <div class="cal-key"><span>Presenting (first author)</span><span class="co">Co-author paper or abstract</span></div>
+      </div>
       <p class="group-title">Upcoming conferences (soonest first)</p>
       <ul class="confs">
         <li><span class="when">27–29 Nov 2026</span><div><div class="org">IEEE International Conference on Bioinformatics and Bioengineering (BIBE 2026)</div><p class="desc">2 full papers (1 as first author) · IEEE proceedings (forthcoming)</p></div></li>
@@ -886,6 +930,60 @@ footer a { color: var(--muted); }
     }, { rootMargin: '-30% 0px -65% 0px' });
     document.querySelectorAll('main section[id]').forEach(function (sec) { obs.observe(sec); });
   }
+})();
+
+// Conference calendar: dates match the Upcoming conferences list
+(function () {
+  var EV = [
+    ["2026-11-27", "2026-11-29", "IEEE BIBE 2026", 1, "2 papers"],
+    ["2026-12-08", "2026-12-09", "ICRPSET 2026", 0, "Rajshahi"],
+    ["2026-12-10", "2026-12-11", "IEEE ICMLANT 2026", 1, "Online"],
+    ["2026-12-10", "2026-12-12", "ICECE 2026", 1, "Oral, BUET Dhaka"],
+    ["2026-12-10", "2026-12-13", "SIC 2026", 0, "Rome"],
+    ["2026-12-17", "2026-12-19", "ICMIEE 2026", 0, "KUET Khulna"],
+    ["2026-12-17", "2026-12-20", "FIRE 2026", 1, "ISI Kolkata"],
+    ["2026-12-18", "2026-12-20", "ICMIB 2026", 1, "Oral"],
+    ["2026-12-19", "2026-12-21", "IEEE UPCON 2026", 1, "IIT Kanpur"],
+    ["2027-03-12", "2027-03-14", "IEEE CSNT 2027", 0, "Khajuraho"]
+  ];
+  var grid = document.getElementById("cal-grid");
+  if (!grid) return;
+  var MON = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  function d(x) { var a = x.split("-"); return new Date(+a[0], a[1] - 1, +a[2]); }
+  function fmt(a, b) { var s = a.getDate(), e = b.getDate(), m = MON[b.getMonth()].slice(0, 3);
+    return (a.getMonth() === b.getMonth() ? (s === e ? s : s + "\u2013" + e) : a.getDate() + " " + MON[a.getMonth()].slice(0, 3) + " \u2013 " + e) + " " + m; }
+  var now = new Date(); now = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var first = EV.map(function (e) { return d(e[1]); }).filter(function (x) { return x >= now; })[0];
+  var view = new Date(now.getFullYear(), now.getMonth(), 1);
+  if (!first) view = new Date(2026, 10, 1);
+  function esc(t) { return t.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function draw() {
+    var y = view.getFullYear(), m = view.getMonth();
+    document.getElementById("cal-title").textContent = MON[m] + " " + y;
+    var h = "";
+    ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].forEach(function (w) { h += '<div class="cal-dow">' + w + "</div>"; });
+    var start = new Date(y, m, 1), off = (start.getDay() + 6) % 7;
+    var cur = new Date(y, m, 1 - off);
+    for (var i = 0; i < 42; i++) {
+      if (i === 35 && cur.getMonth() !== m) break;
+      var cls = "cal-day" + (cur.getMonth() !== m ? " out" : "") + (+cur === +now ? " today" : "");
+      var evs = "";
+      EV.forEach(function (e) { if (cur >= d(e[0]) && cur <= d(e[1])) evs += '<span class="cal-ev' + (e[3] ? "" : " co") + '" title="' + esc(e[2]) + '">' + esc(e[2]) + "</span>"; });
+      h += '<div class="' + cls + '"><span class="n">' + cur.getDate() + "</span>" + evs + "</div>";
+      cur = new Date(cur.getFullYear(), cur.getMonth(), cur.getDate() + 1);
+    }
+    grid.innerHTML = h;
+    var ms = new Date(y, m, 1), me = new Date(y, m + 1, 0), li = "";
+    EV.forEach(function (e) { var a = d(e[0]), b = d(e[1]); if (b >= ms && a <= me)
+      li += '<li class="' + (e[3] ? "" : "co") + '"><time>' + fmt(a, b) + "</time>" + esc(e[2]) + " \u00b7 " + esc(e[4]) + "</li>"; });
+    document.getElementById("cal-list-h").textContent = MON[m] + " " + y;
+    document.getElementById("cal-list").innerHTML = li || '<li class="co">No conferences this month</li>';
+  }
+  document.querySelectorAll("[data-cal]").forEach(function (b) {
+    b.addEventListener("click", function () { var k = +b.getAttribute("data-cal");
+      view = k === 0 ? new Date(now.getFullYear(), now.getMonth(), 1) : new Date(view.getFullYear(), view.getMonth() + k, 1); draw(); });
+  });
+  draw();
 })();
 </script>
 </body>
